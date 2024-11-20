@@ -1,0 +1,173 @@
+.footerContainer {
+  display: flex;
+  gap: 50px;
+  margin: 0;
+  background-color: #d9d9d9;
+  width: 100%;
+  padding: 50px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 30%;
+  flex-shrink: 20px;
+}
+
+.logoContainer > img {
+  height: auto;
+  width: 50%;
+  filter: grayscale(100%);
+}
+
+.logoContainer > div > img {
+  height: auto;
+  width: 30%;
+}
+
+.subscriptionContainer > div > img {
+  height: auto;
+  width: 10%;
+}
+ul {
+  padding: 0;
+}
+ul > li {
+  text-decoration: underline;
+  color: #000000;
+}
+
+.linksContainer {
+  flex: 1;
+  display: flex;
+}
+.subscriptionContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.subscriptionInputContainer {
+  position: relative;
+  box-sizing: border-box;
+  flex: auto;
+}
+.subscriptionInputContainer > input {
+  width: 381px;
+  height: 59px;
+  border-radius: 100px;
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: #b6b6b6;
+  border: none;
+}
+
+.subscriptionInputContainer > button {
+  position: absolute;
+  right: 0px;
+  background-color: #fc8a06;
+  width: 171px;
+  height: 59px;
+  border-radius: 100px;
+  cursor: pointer;
+  color: white;
+  border: none;
+}
+
+.downloadImagesContainer {
+  display: flex;
+  gap: 0px;
+}
+
+.socialIconsContainer {
+  padding-left: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.companyRegistration {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22.5px;
+}
+
+.dealsMessage {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 43px;
+  margin: 0;
+}
+
+.emailPolicyMessage {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 43px;
+}
+
+.linksContainer > div > ul {
+  list-style-type: none;
+}
+
+.linksContainer > div > ul > li {
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .subscriptionInputContainer > input {
+    width: 100%;
+  }
+
+  .subscriptionInputContainer > button {
+    width: 50%;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+  }
+
+  .logoContainer {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+  .logoContainer > img {
+    width: 70%;
+  }
+  .logoContainer > div > img {
+    width: 45%;
+  }
+  .downloadImagesContainer {
+    justify-content: center;
+    align-items: center;
+  }
+  .companyRegistration {
+    text-align: center;
+    margin: 0;
+  }
+  .socialIconsContainer {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dealsMessage {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 43px;
+    margin: 0;
+  }
+  .linksContainer {
+    flex-wrap: wrap;
+  }
+  .emailPolicyMessage {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 43px;
+    text-align: center;
+  }
+}
