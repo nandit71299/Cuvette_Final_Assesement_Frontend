@@ -5,6 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { Provider, useSelector } from "react-redux";
 import store from "./redux/store";
 import HomePage from "./pages/HomePage/HomePage";
+import PrivateRoute from "./components/PrivateRoute";
+import { useEffect } from "react";
 
 function App() {
   return (
@@ -13,8 +15,15 @@ function App() {
       <Loader />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/homepage" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <HomePage />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </Provider>

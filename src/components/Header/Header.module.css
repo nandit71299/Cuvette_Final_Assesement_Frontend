@@ -1,0 +1,49 @@
+.headerContainer {
+  height: 61px;
+  display: flex;
+}
+.headerLogo {
+  height: 100%;
+  width: auto;
+}
+.menu {
+  display: flex;
+  margin-left: auto;
+}
+
+.menuItems {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+  display: flex;
+  gap: 30px;
+  height: 100%;
+}
+
+.menuItem {
+  text-decoration: none;
+  color: black;
+}
+
+.userInfo {
+  display: flex;
+  gap: 10px;
+  background-color: black;
+  border: none;
+}
+
+.userName {
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+}
+
+.active {
+  padding: 10px;
+  padding-right: 30px;
+  padding-left: 30px;
+  background-color: #fc8a06;
+  border-radius: 50px;
+  color: white !important;
+}

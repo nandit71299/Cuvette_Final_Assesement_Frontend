@@ -1,3 +1,65 @@
 :root {
   font-family: "Poppins";
 }
+
+.flex-container {
+  display: flex;
+}
+
+.gap-2 {
+  gap: 2rem;
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+.gap-05 {
+  gap: 0.5rem;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-end {
+  justify-content: end;
+}
+
+.justify-self-end {
+  justify-self: end;
+}
+
+.safeArea {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.safeVertical {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.textWhite {
+  color: white;
+}
+
+.rounded-5 {
+  border-radius: 50px;
+}

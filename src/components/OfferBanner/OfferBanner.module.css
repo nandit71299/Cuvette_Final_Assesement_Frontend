@@ -1,0 +1,137 @@
+.offerMessage {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 22.5px;
+}
+
+.offerMessageCode {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 22.5px;
+  color: #fc8a06;
+}
+.userLocation {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 22.5px;
+}
+.changeLocationBtn {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  text-decoration-line: underline;
+  text-decoration-color: #fc8a06;
+}
+.offerBannerContainer {
+  background-color: #fafafa;
+  height: 70px;
+  border-radius: 0px 0px 10px 10px;
+  border: 1px solid #0000001a;
+}
+
+.pinIcon {
+  height: auto;
+  width: 5%;
+}
+
+.myCartTitle {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0;
+}
+
+.changeLocationLink {
+  text-decoration: none;
+  color: #fc8a06;
+}
+
+/* .cartDetailsContainer {
+  background-color: #028643;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  min-height: 100%;
+  box-sizing: border-box;
+  border-left: 1px solid white;
+}
+.dividerContainer {
+  height: 100%;
+}
+.cartIcon {
+  height: auto;
+  width: 20%;
+}
+
+.cartContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border-right: 1px solid white;
+  color: white;
+}
+
+.emptyBox {
+  width: 150px;
+  border-right: 1px solid white;
+  height: 100%;
+}
+
+.arrowDownContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid white;
+  height: 100%;
+}
+
+.arrowDown {
+  height: 20px;
+  width: auto;
+  transform: rotate(90deg);
+} */
+
+.cartDetailsContainer {
+  height: 100%;
+  border-radius: 0px 0px 10px 10px;
+  display: flex;
+  background-color: #028643;
+}
+
+.cartDetails {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-right: 1px solid white;
+}
+
+.cartIcon {
+  height: 50%;
+  width: auto;
+}
+
+.emptyBox {
+  height: 100%;
+  width: 150px;
+  border-right: 1px solid white;
+}
+
+.arrowDownContainer {
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+.arrowDown {
+  height: 50%;
+  width: auto;
+  transform: rotate(90deg);
+  padding-left: 10px;
+  padding-right: 10px;
+}

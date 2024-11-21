@@ -1,16 +1,18 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux"; // Import useDispatch to dispatch actions
-import { setLoading } from "../../redux/uiStateSlice"; // Import your setLoading action
-import { login } from "../../utils/apiUtil"; // Your login function
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setLoading } from "../../redux/uiStateSlice";
+import { login, verifyToken } from "../../utils/apiUtil";
 import { toast, ToastContainer } from "react-toastify";
 import styles from "../LoginPage/LoginPage.module.css";
-import LoginPageForm from "../../components/LoginPage/LoginPageForm";
-import { Header, Footer } from "../../components/index";
+import { LoginPageForm } from "../../components/index";
+import { Footer } from "../../components/index";
 import { useNavigate } from "react-router-dom";
+import { setIsAuthenticated } from "../../redux/authSlice";
 
 function LoginPage() {
-  const dispatch = useDispatch(); // Initialize dispatch
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleSubmit = async (formValues, e) => {
     e.preventDefault();
 
@@ -27,24 +29,47 @@ function LoginPage() {
     } else {
       localStorage.setItem("token", response.token);
       toast.success(response.message);
+
+      // Set loading and simulate post-login actions
       dispatch(setLoading(true));
       setTimeout(() => {
         dispatch(setLoading(false));
+        dispatch(setIsAuthenticated(true)); // Set authenticated to true
+        navigate("/"); // Redirect to the homepage after a brief delay
       }, 2000);
-      navigate("/homepage"); // Redirect to the dashboard page after successful login
     }
   };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+
     if (token) {
-      dispatch(setLoading(true));
-      setTimeout(() => {
-        dispatch(setLoading(false));
-        navigate("/homepage");
-      }, 2000);
+      // Token found, verify it
+      const checkToken = async () => {
+        dispatch(setLoading(true)); // Start loading before checking token
+        const response = await verifyToken(token); // Verify token
+
+        if (response.success) {
+          // If token is valid, update Redux state to reflect authentication
+          dispatch(setIsAuthenticated(true));
+          navigate("/"); // Redirect to homepage if the token is valid
+        } else {
+          // If token is invalid, clear authentication state and remove token from localStorage
+          dispatch(setIsAuthenticated(false));
+          localStorage.removeItem("token"); // Remove invalid token from localStorage
+        }
+
+        dispatch(setLoading(false)); // Stop loading after verification
+      };
+
+      checkToken();
+    } else {
+      // If no token exists, set loading to false and update state to unauthenticated
+      dispatch(setIsAuthenticated(false));
+      dispatch(setLoading(false)); // Stop loading after verification
     }
-  }, []);
+  }, [dispatch, navigate]); // Dependencies - ensure it's only triggered once after initial mount
+
   return (
     <div className={styles.pageContainer}>
       <main className={styles.mainContainer}>

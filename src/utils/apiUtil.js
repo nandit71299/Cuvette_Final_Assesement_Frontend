@@ -33,3 +33,32 @@ export const login = async (data) => {
     };
   }
 };
+
+export const verifyToken = async (token) => {
+  try {
+    const response = await axios.get(`${apiUrl}/verifyToken`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.status === 200 && response.data.success) {
+      return response.data; // Return response if the token is valid
+    } else {
+      throw new Error(response.data.message);
+    }
+  } catch (error) {
+    if (error.response) {
+      const status = error.response.status;
+      const message = error.response.data.message || "An error occurred";
+      if (status === 404) {
+        return { success: false, message: message };
+      }
+      return { success: false, message: message };
+    }
+    return {
+      success: false,
+      message: error.message || "Network error, please try again later.",
+    };
+  }
+};
