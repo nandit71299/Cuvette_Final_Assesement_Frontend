@@ -1,0 +1,127 @@
+.heroSectionContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 40px 80px 40px;
+  background-color: #fafafa; /* Background color of the section */
+  position: relative;
+  border-radius: 10px;
+}
+
+.heroSectionContent {
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.heroSectionContent p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #03081f;
+  margin: 0;
+}
+
+.heroSectionContent h1 {
+  margin: 0;
+  font-size: 54px;
+  font-weight: 600;
+  line-height: 66px;
+}
+
+.heroSectionContent h1 span {
+  color: #fc8a06; /* Highlighted color for specific text */
+}
+
+.heroSectionContent .description {
+  font-size: 18px;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.heroSectionModelOne {
+  position: absolute;
+  right: 22%;
+  bottom: 0%; /* Adjust the position as necessary */
+  max-width: 650px;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.heroSectionModelTwo {
+  position: absolute;
+  right: 15%;
+  bottom: 0;
+  max-width: 320px;
+  height: 350px;
+  border-radius: 10px;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.strokeBackground {
+  background-color: #fc8a06;
+  border-top-left-radius: 300px;
+  height: 90%;
+  position: absolute;
+  width: 40%;
+  left: 60%;
+  bottom: 0;
+}
+
+.notificationOne {
+  height: 80px;
+  width: 250px;
+  right: 120px;
+  bottom: 290px;
+  position: absolute;
+  z-index: 3;
+}
+
+.notificationCount1 {
+  position: absolute;
+  -webkit-text-stroke-width: 0.01px;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
+  color: transparent;
+  font-size: 68px;
+  top: 0px;
+  right: 150px;
+}
+
+.notificationTwo {
+  height: 80px;
+  width: 250px;
+  right: 50px;
+  bottom: 160px;
+  position: absolute;
+  z-index: 3;
+}
+
+.notificationCount2 {
+  position: absolute;
+  -webkit-text-stroke-width: 0.01px;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
+  color: transparent;
+  font-size: 68px;
+  top: 110px;
+  right: 80px;
+}
+
+.notificationThree {
+  height: 80px;
+  width: 250px;
+  right: 70px;
+  bottom: 20px;
+  position: absolute;
+  z-index: 3;
+}
+
+.notificationCount3 {
+  position: absolute;
+  -webkit-text-stroke-width: 0.01px;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
+  color: transparent;
+  font-size: 68px;
+  top: 250px;
+  right: 100px;
+}

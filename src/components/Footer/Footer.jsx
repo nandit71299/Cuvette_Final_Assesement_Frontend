@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Footer.module.css";
+import FancyInput from "../UiComponents/FancyInput";
 
 function Footer() {
   return (
@@ -29,10 +30,11 @@ function Footer() {
         <h3 className={styles.dealsMessage}>
           Get Exclusive Deals in your Inbox
         </h3>
-        <div className={styles.subscriptionInputContainer}>
+        <FancyInput />
+        {/* <div className={styles.subscriptionInputContainer}>
           <input type="email" placeholder="youremail@gmai.com" />
           <button>Subscribe</button>
-        </div>
+        </div> */}
         <div className={styles.emailPolicyMessage}>
           we wont spam, read our
           <span style={{ textDecoration: "underline", cursor: "pointer" }}>

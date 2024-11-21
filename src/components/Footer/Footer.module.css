@@ -53,32 +53,6 @@ ul > li {
   flex-wrap: wrap;
   gap: 10px;
 }
-.subscriptionInputContainer {
-  position: relative;
-  box-sizing: border-box;
-  flex: auto;
-}
-.subscriptionInputContainer > input {
-  width: 381px;
-  height: 59px;
-  border-radius: 100px;
-  box-sizing: border-box;
-  padding: 20px;
-  background-color: #b6b6b6;
-  border: none;
-}
-
-.subscriptionInputContainer > button {
-  position: absolute;
-  right: 0px;
-  background-color: #fc8a06;
-  width: 171px;
-  height: 59px;
-  border-radius: 100px;
-  cursor: pointer;
-  color: white;
-  border: none;
-}
 
 .downloadImagesContainer {
   display: flex;

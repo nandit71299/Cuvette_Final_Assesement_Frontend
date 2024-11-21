@@ -1,5 +1,6 @@
 const API_PORT = import.meta.env.VITE_API_PORT;
 const apiUrl = `http://localhost:${API_PORT}/api`;
+
 import axios from "axios";
 
 export const login = async (data) => {
