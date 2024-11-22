@@ -6,7 +6,6 @@ import { Provider, useSelector } from "react-redux";
 import store from "./redux/store";
 import HomePage from "./pages/HomePage/HomePage";
 import PrivateRoute from "./components/PrivateRoute";
-import { useEffect } from "react";
 
 function App() {
   return (

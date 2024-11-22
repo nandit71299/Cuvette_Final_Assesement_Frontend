@@ -6,6 +6,8 @@
   background-color: #fafafa; /* Background color of the section */
   position: relative;
   border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .heroSectionContent {
@@ -124,4 +126,66 @@
   font-size: 68px;
   top: 250px;
   right: 100px;
+}
+
+@media (max-width: 680px) {
+  .heroSectionContent h1 {
+    font-size: 28px;
+    line-height: 36px;
+    text-align: center;
+    color: white;
+  }
+
+  .heroSectionContainer {
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #03081f;
+  }
+
+  .heroSectionContent {
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .heroSectionContent p {
+    font-size: 12px;
+    color: white;
+  }
+
+  .modelImagesContainer {
+    display: none;
+  }
+
+  .fancyInputContainer {
+    flex-direction: column; /* Stack input and button vertically */
+  }
+
+  .fancyInputContainer input,
+  .fancyInputContainer button {
+    width: 100%; /* Full width for input and button */
+  }
+
+  .notificationOne,
+  .notificationTwo,
+  .notificationThree {
+    display: none;
+  }
+
+  .heroSectionModelOne,
+  .heroSectionModelTwo {
+    display: none;
+  }
+
+  .strokeBackground {
+    display: none;
+  }
+  .notificationCount1,
+  .notificationCount2,
+  .notificationCount3 {
+    display: none;
+  }
 }

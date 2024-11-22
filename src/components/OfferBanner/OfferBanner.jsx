@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./OfferBanner.module.css";
+import data from "../../data/data";
 
 function OfferBanner() {
   return (
@@ -21,11 +22,7 @@ function OfferBanner() {
         style={{ height: "100%" }}
       >
         <div className="flex-container justify-content-center align-items-center gap-05">
-          <img
-            src="https://s3-alpha-sig.figma.com/img/f277/15bb/6e6ab9f0bcb3a0b07191c3bf52ea4a72?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=IYMFYjrdXk~PJatvluJoFOjU9QHOaAEJMu~OeeN7z4NL0JBDy7OFkkZ-Ol2nvyrORg7GqUznmExRTP8H73Z8Ur3OghLaabT0buAUKrGk7auvts8DTnJYH94lFgE1dFdlnpFUjw4tD7XmT~rczVpTXWpAurv1Q4CxSkZ3k9pqy8BEtucK3qfBlXg-nbfX41spKFg7YBNCUzM97zVE2jrc6YfHR5Y-kRQZmmSkloyZhkO6owauexocnylMnNNT6pw6q8kDIqcdFLn8QTUjaQxj2hlNn237Sl-echGW2o7YccPg6OLVJuMo3J9Nhd01n83ykOQCNw~JGsNluyjskBJPUg__"
-            alt=""
-            className={`${styles.pinIcon}`}
-          />
+          <img src={data.pinIcon} alt="" className={`${styles.pinIcon}`} />
 
           <p className={styles.userLocation}>User's Location </p>
           <span className={styles.changeLocationBtn}>

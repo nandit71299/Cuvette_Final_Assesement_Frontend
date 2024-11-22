@@ -1,0 +1,42 @@
+.userInfo {
+  background-color: #fc8a06;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  gap: 10px;
+}
+
+.cartInfo {
+  background-color: #028643;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+}
+
+.userName {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+}
+.cartText {
+  color: white;
+  font-size: 16px;
+
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.pinIcon {
+  height: 20px;
+  width: auto;
+}
+
+.userAddress {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  margin: 0;
+}

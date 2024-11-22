@@ -11,12 +11,11 @@ function FancyInput(props) {
         placeholder={placeholder || "youremail@gmai.com"}
         style={{ ...inputStyles }}
       />
-      {console.log(props)} {/* Optional debug line */}
       <button
         onClick={onClick || null}
         style={{ ...buttonStyles }} // Apply custom button styles
       >
-        Subscribe
+        {props?.buttonTitle || "Subscribe"}
       </button>
     </div>
   );

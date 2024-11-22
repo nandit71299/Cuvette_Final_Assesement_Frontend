@@ -2,17 +2,22 @@ import React from "react";
 import styles from "./HeroSection.module.css";
 import data from "../../data/data";
 import FancyInput from "../UiComponents/FancyInput";
+import useIsMobile from "../../utils/isMobile";
 
 function HeroSection() {
+  const isMobile = useIsMobile();
+
   const buttonStyles = {
-    right: "100px", // Add any other styles you want here
+    right: isMobile ? "0px" : "100px", // Add any other styles you want here
+    width: isMobile ? "30%" : "40%",
   };
   const inputStyles = {
     backgroundColor: "#FFFFFF",
     border: "1px solid #bfbfbf",
+    width: isMobile ? "100%" : "60%",
   };
   return (
-    <div>
+    <div className="safeArea">
       <div className={styles.heroSectionContainer}>
         <div className={styles.heroSectionContent}>
           <p>Order Restaurant food, takeaway and groceries.</p>
@@ -26,17 +31,18 @@ function HeroSection() {
             placeholder="e.g. EC4R 3TE"
             type="text"
             buttonStyles={buttonStyles}
+            buttonTitle={isMobile ? ">" : "Subscribe"}
             inputStyles={inputStyles} // Pass buttonStyles to FancyInput
           />
         </div>
-        <div>
+        <div className={styles.modelImagesContainer}>
           <img
             src={data.heroSectionModelOne}
             alt=""
             className={styles.heroSectionModelOne}
           />
         </div>
-        <div>
+        <div className={styles.modelImagesContainer}>
           <img
             src={data.heroSectionModelTwo}
             alt=""

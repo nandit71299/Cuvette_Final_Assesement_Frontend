@@ -9,6 +9,7 @@
 .menu {
   display: flex;
   margin-left: auto;
+  gap: 20px;
 }
 
 .menuItems {
@@ -46,4 +47,10 @@
   background-color: #fc8a06;
   border-radius: 50px;
   color: white !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .headerLogo {
+    height: 50%;
+  }
 }
