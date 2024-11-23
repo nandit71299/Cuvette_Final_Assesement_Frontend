@@ -158,5 +158,50 @@ const dealsData = [
   },
 ];
 
-export { dealsData };
+const categoriesData = [
+  {
+    id: 1,
+    name: "Burgers and Fast Food",
+    image:
+      "https://www.figma.com/file/PwcM13xK4XBCiuX2M1iuOL/image/f273401861db130d47525cdbcf113bad91763c94",
+    noOfRestraunts: 21,
+  },
+  {
+    id: 2,
+    name: "Salads",
+    image:
+      "https://www.figma.com/file/PwcM13xK4XBCiuX2M1iuOL/image/773c61960d856bd6b70a825ca8cdb6eee4b81688",
+    noOfRestraunts: 32,
+  },
+  {
+    id: 3,
+    name: "Pasta's and Casual",
+    image:
+      "https://s3-alpha-sig.figma.com/img/53e9/8474/80ccba9eb11af5abd3be5a6b914def0d?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ObyAmqjPctlkmpftiIOGUgrGfQ68s~fOCXpAEu6cKdNFtzKOXcBk-TONCIrhknDkQUgpti0XrwM~d7YdtfLLEDvRTyK0VWTihudKdoMK6oQSzEpzmEaqdlNz7HklhNSNLxfRB54BhnssOTCY2LPkjGmQhdgC8FwzJmAOhGWUNJ2rh2ubpjUNAaXBRs8YfSTSzGQOJNpq4xYdzIIqDYFckpJePdZ3xPbVAveaI-pFOsDniX5RuT8XbfJRyhNru2W-gwu2ULtTTvVE0BDi0TUQwlqpeRm0J27vm3STvQLdHYwnIhIUqELx6lHOUrCXVkHZexYTutLlD26~O745HqPpfQ__",
+    noOfRestraunts: 4,
+  },
+  {
+    id: 4,
+    name: "Pizza",
+    image:
+      "https://s3-alpha-sig.figma.com/img/5c9c/3c0f/bebb21d6d7bd08fb3850ede5c9eb9d9e?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=LFPUTGjaCWLhWVnrUDyhohwlVQvd1lFqRxQU8q3otvV24mKFLpgAooeRAkR6D0zDc~~8X2aUnysHZIjDJs3wLhpPEiRRhtAqcWU4fnos3AsfM3Mi~5cv260HaCAQuYXcijEqULe-vvEsyZaEGRb2nwLSoviP7SYPria4Fenw3w8JKEqyk1S3rgBN-8znvhwMd~yYlruTpj0k~qJHtOEtJ6OLT0dd~y3o5OLH3l59okS4jsgxZaK8EI~zv-ftLX5CPfU5Nk5U2Bw2D6zVifKK9B6rYKdxBx6xGAcRBcbm8F-g5bpa4mQ-z6N4MtwRjUQsPLYvFJluJV6-~pvSsVhjXQ__",
+    noOfRestraunts: 32,
+  },
+
+  {
+    id: 5,
+    name: "Breakfast",
+    image:
+      "https://s3-alpha-sig.figma.com/img/a724/61e4/3ce636c9a873a6a923e0ea5532729119?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=AFUjYi94tyj~ta2bnm6V99Y63oxG2rtVEP9rlbt5XIxGcRuHEasJJzttFSHz2V8TYEXTSwR01VYkHSSVfpgYNjFN0KFUNETtTFiAuqYaIrDj3almFKXO3bGhm07bnMpYwtDtzWcvZteDXlBsg9UxHBHmg2gYfhTWG-R~4Zus73B-z53Yy7dTTigMSneOtAcbfIFxk8kYfvNYQmlsvhr1SrFeDc0NGs6HpHSFoxj7Lboq8sW6RB7xqXx6YwoXyEHFz2EeOlXmTfpji4HYRrPq8v8ih0llvZWdI~fVtR9tYJF1V90EQXOUnguz~yZdMH1DvGGVJ3rwB-eHyawSziVZGg__",
+    noOfRestraunts: 4,
+  },
+  {
+    id: 6,
+    name: "Soups",
+    image:
+      "https://s3-alpha-sig.figma.com/img/1eb7/4c10/99f1cab96bf53e18d686012e3aece6c7?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=n5rNx88ZScv7M5cA7tf2WgAzXonAu7eaYwbP~mBsKPvkWDB2JO8bS44FndJ5HKLzTLBnjj9rwIcgJt1vx1As-xisjHaSFbABLwAMiXc82XxbCFnRzZaDYwnXdB3G4hQ1khGJ~3mheG~QYPWy3v5vmMYYYCYwa1ZDQTAN2BGp46gNj~nbZO5K8Qpl-BGLJ-WPYI-xSk1tk6JWV-xnXTQsKWGEN4dp0wZteOTIEEAmdqZrtUah8ioL2~nJBD4DpgD2rfWdvW3u-ofzK3U02sOXCcEoJDlhOKXAsfEB6QIZu8u9DccXodZVMBxHwZRdU56O0zTJPLtTzStsZ3kiA3xPbw__",
+    noOfRestraunts: 32,
+  },
+];
+export { dealsData, categoriesData };
 export default data;
