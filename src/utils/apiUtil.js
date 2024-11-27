@@ -63,3 +63,16 @@ export const verifyToken = async (token) => {
     };
   }
 };
+
+export const getAllRestraunts = async (data) => {
+  try {
+    const response = await axios.get(`${apiUrl}/restraunts/getAll`, {
+      headers: {
+        Authorization: `Bearer ${data}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    return { success: false, message: "Internal Server Error" };
+  }
+};

@@ -2,12 +2,12 @@
   display: flex;
   gap: 50px;
   margin: 0;
-  background-color: #d9d9d9;
+  background-color: #d9d9d960;
   width: 100%;
-  padding: 50px;
+  padding: 10px;
   box-sizing: border-box;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 

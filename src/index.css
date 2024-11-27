@@ -1,5 +1,6 @@
 :root {
   font-family: "Poppins";
+  font-weight: 300;
 }
 
 .flex-container {
@@ -47,6 +48,9 @@
 .align-items-center {
   align-items: center;
 }
+.align-items-end {
+  align-items: flex-end;
+}
 
 .justify-content-end {
   justify-content: end;
@@ -76,6 +80,21 @@
 
 .justify-content-between {
   justify-content: space-between;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.text-center {
+  text-align: center;
+}
+.flex-grow-1 {
+  flex-grow: 1;
 }
 
 @media only screen and (max-width: 768px) {

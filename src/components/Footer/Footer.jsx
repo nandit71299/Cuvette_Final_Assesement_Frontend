@@ -3,6 +3,29 @@ import styles from "./Footer.module.css";
 import FancyInput from "../UiComponents/FancyInput";
 
 function Footer() {
+  const inputStyles = {
+    width: "100%",
+    padding: "20px",
+    border: "none",
+    borderRadius: "50px",
+    backgroundColor: "#D9D9D9",
+    color: "black",
+    fontSize: "15px",
+    fontWeight: 400,
+    lineHeight: "43px",
+  };
+  const buttonStyles = {
+    width: "fit-content",
+    color: "white",
+    border: "none",
+    padding: "10px 20px",
+    borderRadius: "50px",
+    cursor: "pointer",
+    fontSize: "18px",
+    fontWeight: "500",
+    lineHeight: "27px",
+    backgroundColor: "#FC8A06",
+  };
   return (
     <div className={styles.footerContainer}>
       {/* <div style={{ display: "flex", flexWrap: "wrap" }}> */}
@@ -30,13 +53,13 @@ function Footer() {
         <h3 className={styles.dealsMessage}>
           Get Exclusive Deals in your Inbox
         </h3>
-        <FancyInput />
+        <FancyInput inputStyles={inputStyles} buttonStyles={buttonStyles} />
         {/* <div className={styles.subscriptionInputContainer}>
           <input type="email" placeholder="youremail@gmai.com" />
           <button>Subscribe</button>
         </div> */}
         <div className={styles.emailPolicyMessage}>
-          we wont spam, read our
+          we wont spam, read our &nbsp;
           <span style={{ textDecoration: "underline", cursor: "pointer" }}>
             email policy
           </span>
@@ -61,7 +84,7 @@ function Footer() {
         </div>
       </div>
       {/* </div> */}
-      <div className={styles.linksContainer}>
+      <div className={`${styles.linksContainer} gap-05`}>
         <div>
           <ul>
             <li style={{ fontWeight: "bold", textDecoration: "none" }}>

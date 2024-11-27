@@ -1,0 +1,89 @@
+.cardContainer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  align-items: end;
+  display: flex;
+  border-radius: 20px;
+}
+
+.signupMessage {
+  color: #fc8a06;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+  margin: 0;
+}
+.subMessage {
+  font-family: Poppins;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 66px;
+  margin: 0;
+  color: white;
+}
+
+.button {
+  width: 205px;
+  height: 52px;
+  border-radius: 50px;
+  background-color: #fc8a06;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+  color: white;
+}
+
+.bannerMessage {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  background-color: white;
+  padding: 10px;
+  padding-right: 30px;
+  padding-left: 30px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 27px;
+}
+
+@media only screen and (max-width: 768px) {
+  .cardContainer {
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 223px;
+    border-radius: 10px;
+  }
+  .bannerMessage {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 19.5px;
+    padding: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  .signupMessage {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+  .subMessage {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 36px;
+  }
+  .button {
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 16.5px;
+    width: auto;
+    height: 28px;
+    padding: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}

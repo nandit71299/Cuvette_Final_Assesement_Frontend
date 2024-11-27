@@ -1,3 +1,6 @@
+.mainContainer {
+  margin-top: -35px;
+}
 .userInfo {
   background-color: #fc8a06;
   display: flex;

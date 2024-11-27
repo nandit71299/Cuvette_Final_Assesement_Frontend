@@ -152,7 +152,6 @@ select:focus {
   /* Card size for mobile */
   .dealCard {
     width: 150px; /* Take full width on mobile */
-    height: 325px; /* Adjust height based on content */
   }
 
   .cardImage {

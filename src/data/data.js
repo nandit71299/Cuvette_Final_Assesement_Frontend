@@ -11,6 +11,20 @@ const data = {
     "https://www.figma.com/file/PwcM13xK4XBCiuX2M1iuOL/image/0dae45ddb8892b54d8eeb5dd9377c66a4087a157",
   pinIcon:
     "https://s3-alpha-sig.figma.com/img/f277/15bb/6e6ab9f0bcb3a0b07191c3bf52ea4a72?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=IYMFYjrdXk~PJatvluJoFOjU9QHOaAEJMu~OeeN7z4NL0JBDy7OFkkZ-Ol2nvyrORg7GqUznmExRTP8H73Z8Ur3OghLaabT0buAUKrGk7auvts8DTnJYH94lFgE1dFdlnpFUjw4tD7XmT~rczVpTXWpAurv1Q4CxSkZ3k9pqy8BEtucK3qfBlXg-nbfX41spKFg7YBNCUzM97zVE2jrc6YfHR5Y-kRQZmmSkloyZhkO6owauexocnylMnNNT6pw6q8kDIqcdFLn8QTUjaQxj2hlNn237Sl-echGW2o7YccPg6OLVJuMo3J9Nhd01n83ykOQCNw~JGsNluyjskBJPUg__",
+  logo: "https://www.figma.com/file/PwcM13xK4XBCiuX2M1iuOL/image/c323e6145fe44fe9aa4ff0011347ab73c5d6358d",
+  downloadAppBannerImage:
+    "https://s3-alpha-sig.figma.com/img/bbd5/3846/cb92a734a26973d3c7cd83699addf233?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=J6Oh6734nRS53YQs38rsLMiRZj9bpJPxU9CR1xI2KRdff0uFjlL9UmNJ1m4YC2MTPazvWz-7l~xIx5~PNsGG4EJTwCt-UhSVTsnHTVsUIeHeMxmwdiFIBqU0QzlfotXVqh9kHqNmsmwFsBQXS0GWlMXJaKaYcNNfUJ4nKEEhzUePf~7S-eTzjwEfNzpLoYXYjV6zEw77G~LFUbXoKvYdhIRpCEF-dvbYRrNSr-wkPJqSwQQHXrJLpcjrjMGuV03kiTyXFeJWVBVeE~V~S-1DXgHoPITP5QPDl0B6bm~9OoerM0ci4mLSDDiuIuTe5p8iddOYwShiBE3IPlWys7SxCg__",
+  downloadAppStoreImage:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/2560px-Download_on_the_App_Store_Badge.svg.png",
+  signUpAsBusiness:
+    "https://www.figma.com/file/PwcM13xK4XBCiuX2M1iuOL/image/66767afc69787f183638fef25dec886650755922",
+  signUpAsRider:
+    "https://www.figma.com/file/PwcM13xK4XBCiuX2M1iuOL/image/2e88f031000639a9e07045824cf61f87e132b3ed",
+  orderFood:
+    "https://s3-alpha-sig.figma.com/img/9e86/106a/631393e760f085d14c048d525e3ef56e?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=hyU25OYOWLwyYKIwSSnE3QnzNiU0~fz94JYexJcNf6abSF6lfv81zl4h4xY29l21hWKiaB4iAM3exBWgkMLOElpFxecfMn19Qs90xbu1LJpZWN8yEfnzbkxr4TzriwZIUBH1LQ2wc8bOaIz7FpNDI5FaEqKsUb8QZ~jmmVF1D8hKVtTsoEu3mrByVtgSGt0xKAmgL4zhC99PvO9w4pg~M4sV15xBffevEyc0ndrjSOswmfIn~LWZfmI7JIoTBl0Wd5YRcPSJlJAdHp6g0dZIdpKc1jpieQAICWTQsncFOoDADYk7T4MzbFJrXureDnUVRi~C2N1uHFPFhKDm~uOiFg__",
+  food: "https://s3-alpha-sig.figma.com/img/84b2/691f/8d3c41392c27f8ba967b28c003b6511d?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Upb1hTTgwUFB~KzOuzcbUqlTmCnz-RfMIQ6JtrU-ILSxosbMQOdPP~KxlyNEBBz-1JxeaT0WpbS2d6sPaPPINGPeM3qvUbKqqWP9bpVHzBcq9DVCQPFcJdT62b4X2em1V0mmkj3peRwqajV-TsQAw1tiyDtSnYeckPuwC~~1idCoVTUTA9LFvmjBzZD5b0CgXLRey77-c3vPH~~WfpZn7da9se4JbDuhIAjMdpkZlPFCesGbqxB-m-uiAlAKcvRWMeRVUKIJs0IrcFeP-rjQjhUShRz3LvbMP6TxnvcToBGwm4A4ChQsGZ9ZWbOZv4lw6VQsq~rfb84X9Fib271iIg__",
+  order:
+    "https://s3-alpha-sig.figma.com/img/80e6/0b66/ab934ae45238834b62ee67cff03882f6?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Y3eYiGtvI6a5lkHJoyI2CJZs49wwduIKyZMcSi0WnLH27XyfAiKh1SIu-CNi52OvowijFvhhXqiJnb3c2fRq3SYOhKtCfUIOq4thDFIFvxeBUiUmtQV6OpLoL7gdQs7TxE7Rqld8tVHcpEPIH7gIkzuAtWd3M7xJy51l11q1qwN~3gfjwiuVsIDQcCKaWymK8nkcGJ-vkNbtzr~EbR3PTD8Y7OFOpsh-JdwTigVUACj2Bt9P3ZdI~2oz1ypMR-ZKgrIhBstn4ScKzb7IQpoSnVc9MDj9DbE8EdvDVmtCBVrKayJpD0gbRc6vMmJjslCDKBTxuE2jZf8Kc1lljko~Hw__",
 };
 
 const dealsData = [

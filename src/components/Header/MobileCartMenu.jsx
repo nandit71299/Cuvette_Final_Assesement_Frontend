@@ -3,7 +3,9 @@ import styles from "./MobileCartMenu.module.css";
 import data from "../../data/data";
 function MobileCartMenu() {
   return (
-    <div className="flex-container flex-column gap-1">
+    <div
+      className={`${styles.mainContainer} flex-container flex-column gap-05`}
+    >
       <div className="flex-container justify-content-between">
         <div className={styles.userInfo}>
           <img

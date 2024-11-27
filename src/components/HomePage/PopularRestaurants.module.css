@@ -1,0 +1,59 @@
+.containerTitle {
+  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 48px;
+}
+.restrauntsCardsContainer {
+  display: flex;
+  gap: 1rem;
+  overflow-y: scroll;
+}
+
+.restrauntCard {
+  background-color: #fc8a06;
+  height: 266px;
+  width: 238px;
+  border-radius: 10px;
+}
+
+.restrauntImage {
+  width: 238px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 203px;
+  object-fit: cover;
+}
+
+.restrauntInfo {
+  text-align: center;
+  margin: 0;
+}
+
+.restrauntInfo > h3 {
+  padding-top: 10px;
+  color: white;
+  margin: 0;
+}
+
+@media only screen and (max-width: 680px) {
+  .containerTitle {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+  .restrauntImage {
+    width: 121.68px;
+    height: 103.79px;
+  }
+  .restrauntCard {
+    width: 122px;
+    height: 156px;
+  }
+  .restrauntInfo > h3 {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 16px;
+    text-overflow: ellipsis;
+  }
+}

@@ -1,0 +1,54 @@
+.mainContainer {
+  display: flex;
+  background-color: #fc8a06;
+  color: white;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  border-radius: 10px;
+}
+.card {
+  text-align: center;
+  border-right: 1px solid #d9d9d9;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.number {
+  font-size: 54px;
+  font-weight: 300;
+  line-height: 38px;
+}
+.message {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 38px;
+}
+
+@media only screen and (max-width: 768px) {
+  .mainContainer {
+    flex-direction: column;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    gap: 20px;
+  }
+  .card {
+    border: 0;
+    padding: 0;
+    gap: 20px;
+    border-bottom: 1px solid #d9d9d9;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+  .number {
+    font-size: 54px;
+    font-weight: 300;
+    line-height: 38px;
+  }
+  .message {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 38px;
+  }
+}

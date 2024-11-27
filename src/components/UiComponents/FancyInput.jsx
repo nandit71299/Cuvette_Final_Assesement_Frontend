@@ -8,7 +8,7 @@ function FancyInput(props) {
     <div className={styles.fancyInputContainer}>
       <input
         type={type || "email"}
-        placeholder={placeholder || "youremail@gmai.com"}
+        placeholder={placeholder || "youremail@gmail.com"}
         style={{ ...inputStyles }}
       />
       <button
