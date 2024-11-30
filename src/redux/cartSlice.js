@@ -1,8 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import {
+  getCartData,
+  removeItemFromCartApi,
+  addToCart,
+} from "../utils/apiUtil"; // Import utility functions
 
 const API_URL = import.meta.env.VITE_API_URL;
 const API_PORT = import.meta.env.VITE_API_PORT;
+const apiUrl = `${API_URL}:${API_PORT}/api`;
 
 const initialState = {
   loading: false,
@@ -24,20 +29,11 @@ export const fetchCartData = () => async (dispatch) => {
       return;
     }
 
-    const headers = {
-      Authorization: `Bearer ${token}`,
-    };
+    // Use the utility function to get the cart data
+    const { success, cart, message } = await getCartData(token);
 
-    const response = await axios.get(
-      `${API_URL}:${API_PORT}/api/cart/getCart`,
-      { headers }
-    );
-
-    const cart = response.data.cart; // Get cart from the response
-
-    // Check if cart exists and has items
-    if (!cart || cart.length === 0) {
-      dispatch(fetchCartFailure("No items found in the cart"));
+    if (!success) {
+      dispatch(fetchCartFailure(message || "No items found in the cart"));
       return;
     }
 
@@ -46,22 +42,102 @@ export const fetchCartData = () => async (dispatch) => {
       (total, item) => total + item.price * item.quantity,
       0
     );
-
-    // Delivery fee is assumed to be a constant (5 in this case)
     const deliveryFee = 5;
-    const total = subTotal + deliveryFee; // Add delivery fee to subtotal
+    const total = subTotal + deliveryFee;
 
-    // Dispatch updateCart with the data we need
     dispatch(
       updateCart({
-        items: cart, // Use the cart items directly
+        items: cart,
         subTotal,
         total,
-        deliveryFee, // Include delivery fee in state
+        deliveryFee,
       })
     );
   } catch (error) {
     dispatch(fetchCartFailure(error.message || "Error fetching cart data"));
+  }
+};
+
+export const removeFromCart = (itemId) => async (dispatch) => {
+  dispatch(fetchCartRequest()); // Set loading state
+
+  try {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      dispatch(fetchCartFailure("No token found, please log in."));
+      return;
+    }
+
+    // Use the utility function to remove the item from the cart
+    const { success, cart, message } = await removeItemFromCartApi(
+      token,
+      itemId
+    );
+
+    if (success) {
+      // If item removal is successful, update the cart in Redux
+      const subTotal = cart.item.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      );
+      const deliveryFee = 5;
+      const total = subTotal + deliveryFee;
+
+      dispatch(
+        updateCart({
+          items: cart.item,
+          subTotal,
+          total,
+          deliveryFee,
+        })
+      );
+    } else {
+      dispatch(fetchCartFailure(message || "Failed to remove item"));
+    }
+  } catch (error) {
+    dispatch(
+      fetchCartFailure(error.message || "Error removing item from cart")
+    );
+  }
+};
+
+export const addItemToCart = (itemId) => async (dispatch) => {
+  dispatch(fetchCartRequest()); // Set loading state
+
+  try {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      dispatch(fetchCartFailure("No token found, please log in."));
+      return;
+    }
+
+    // Use the utility function to add the item to the cart
+    const { success, cart, message } = await addToCart({ itemId, token });
+
+    if (success) {
+      // Update the cart in Redux after successful addition
+      const subTotal = cart.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      );
+      const deliveryFee = 5;
+      const total = subTotal + deliveryFee;
+
+      dispatch(
+        updateCart({
+          items: cart,
+          subTotal,
+          total,
+          deliveryFee,
+        })
+      );
+    } else {
+      dispatch(fetchCartFailure(message || "Failed to add item to cart"));
+    }
+  } catch (error) {
+    dispatch(fetchCartFailure(error.message || "Error adding item to cart"));
   }
 };
 
@@ -82,12 +158,11 @@ const cartSlice = createSlice({
     updateCart: (state, action) => {
       const { items, subTotal, total, deliveryFee } = action.payload;
 
-      // Update the items, subTotal, and total in the state
+      // Update state with new values
       state.items = items;
       state.subTotal = subTotal;
       state.deliveryFee = deliveryFee;
       state.total = total;
-
       state.loading = false;
     },
 

@@ -17,6 +17,7 @@ import {
   fetchCartData,
 } from "../../redux/cartSlice";
 import Cart from "../../components/Cart/Cart";
+import { addToCart } from "../../utils/apiUtil";
 
 function RestrauntPage() {
   const isMobile = useIsMobile();
@@ -59,23 +60,25 @@ function RestrauntPage() {
     dispatch(fetchCartData()); // Fetch cart data when component mounts
   }, [dispatch]);
 
-  const addItemToCart = (item) => {
+  const addItemToCart = async (item) => {
     // Check if cartItems.items is an array before proceeding
+
     if (!Array.isArray(cartItems.items)) {
       console.error("cartItems.items is not an array:", cartItems.items);
-      return; // Prevent further execution if cartItems.items is not an array
+      return;
     }
-    console.log(item);
+
+    // Check for the item in the cart using the correct identifier (_id or item_id)
     const existingItemIndex = cartItems.items.findIndex(
-      (cartItem) => cartItem.item_id === item._id // Match by item_id instead of _id to ensure unique items
+      (cartItem) => cartItem._id === item._id // Compare _id for both cartItem and item
     );
 
     let updatedItems = [];
-    console.log(existingItemIndex);
+
     if (existingItemIndex !== -1) {
-      // If item exists, update quantity
-      updatedItems = cartItems.items.map((cartItem, index) => {
-        if (index === existingItemIndex) {
+      // If item exists, update quantity locally
+      updatedItems = cartItems.items.map((cartItem) => {
+        if (cartItem._id === item._id) {
           return {
             ...cartItem,
             quantity: cartItem.quantity + 1, // Increase quantity by 1
@@ -96,15 +99,47 @@ function RestrauntPage() {
 
     const updatedTotal = updatedSubTotal + cartItems.deliveryFee;
 
-    // Dispatch to update the cart state in Redux
+    // Dispatch the updateCart action to Redux (update local state)
     dispatch(
       updateCart({
-        items: updatedItems, // Pass updatedItems directly
+        items: updatedItems,
         subTotal: updatedSubTotal,
         total: updatedTotal,
         deliveryFee: cartItems.deliveryFee, // Use the existing delivery fee from the state
       })
     );
+
+    // Now sync the updated cart with the backend API
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        toast.error("You must be logged in to update the cart.");
+        return;
+      }
+
+      const response = await addToCart({
+        itemId: item._id,
+        token,
+      });
+
+      if (response.success) {
+        // Update Redux state with the new cart from the backend
+        dispatch(
+          updateCart({
+            items: response.cart.item, // Use the cart returned from the backend
+            subTotal: response.cart.totalPrice, // Update subtotal
+            total: response.cart.totalPrice + cartItems.deliveryFee, // Calculate new total
+            deliveryFee: cartItems.deliveryFee, // Use the existing delivery fee from the state
+          })
+        );
+        toast.success("Item added to cart!");
+      } else {
+        toast.error(response.message || "Failed to add item to cart.");
+      }
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      toast.error("Error adding item to cart.");
+    }
   };
 
   const groupedItems = itemsData.reduce((acc, item) => {
@@ -209,6 +244,7 @@ function RestrauntPage() {
             ))}
           </div>
         </div>
+
         {cartItems.items.length > 0 && <Cart />}
       </div>
     </div>

@@ -1,13 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./Cart.module.css";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { removeItemFromCart } from "../../redux/cartSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { removeFromCart } from "../../redux/cartSlice"; // Now dispatching the thunk
+import { toast } from "react-toastify"; // If you want to show notifications
 
-function Cart() {
+const Cart = () => {
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart);
+  const cartItems = useSelector((state) => state.cart); // Accessing cart state from Redux
 
+  const handleRemoveFromCart = (itemId) => {
+    dispatch(removeFromCart(itemId)); // Dispatch the thunk to remove item
+  };
+
+  // Render cart items
   return (
     <div className={styles.cartContainer}>
       <div className={styles.cartTitle}>
@@ -33,10 +38,7 @@ function Cart() {
               <div>
                 <button
                   className={styles.cartItemRemoveButton}
-                  onClick={() => {
-                    //API Call Then ...
-                    dispatch(removeItemFromCart(item._id));
-                  }}
+                  onClick={() => handleRemoveFromCart(item.item_id)} // Ensure correct ID is passed
                 >
                   <i
                     className="bi bi-trash-fill"
@@ -50,14 +52,11 @@ function Cart() {
             </div>
           ))
         ) : (
-          <div className={styles.emptyCartContainer}>
-            {" "}
-            No items in the cart.
-          </div>
+          <div className={styles.emptyCartContainer}>No items in the cart.</div>
         )}
       </div>
     </div>
   );
-}
+};
 
 export default Cart;

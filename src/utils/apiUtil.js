@@ -117,3 +117,82 @@ export const getItems = async (data) => {
     return error;
   }
 };
+
+export const addToCart = async (data) => {
+  try {
+    const response = await axios.post(
+      `${apiUrl}/cart/add-to-cart`,
+      {
+        itemId: data.itemId, // Send the item ID to the backend
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${data.token}`, // Authorization token
+        },
+      }
+    );
+
+    if (response.data.success) {
+      return { success: true, cart: response.data.cart }; // Return the updated cart
+    } else {
+      throw new Error(response.data.message); // Handle unsuccessful responses
+    }
+  } catch (error) {
+    if (error.response) {
+      const status = error.response.status;
+      const message = error.response.data.message || "An error occurred";
+      return { success: false, message };
+    }
+    return {
+      success: false,
+      message: error.message || "Network error, please try again later.",
+    };
+  }
+};
+
+export const getCartData = async (token) => {
+  try {
+    const response = await axios.get(`${apiUrl}/cart/getCart`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.data.success) {
+      return { success: true, cart: response.data.cart };
+    } else {
+      return { success: false, message: response.data.message };
+    }
+  } catch (error) {
+    return {
+      success: false,
+      message: error.message || "Error fetching cart data",
+    };
+  }
+};
+
+// Utility function to remove an item from the cart
+export const removeItemFromCartApi = async (token, itemId) => {
+  try {
+    const response = await axios.post(
+      `${apiUrl}/cart/remove-from-cart`,
+      { itemId },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.data.success) {
+      return { success: true, cart: response.data.cart };
+    } else {
+      return { success: false, message: response.data.message };
+    }
+  } catch (error) {
+    return {
+      success: false,
+      message: error.message || "Error removing item from cart",
+    };
+  }
+};
