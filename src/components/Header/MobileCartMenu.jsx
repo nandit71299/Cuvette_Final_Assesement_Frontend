@@ -35,7 +35,7 @@ function MobileCartMenu() {
         </div>
       </div>
       <div
-        style={{ maxHeight: "20px" }}
+        style={{ maxHeight: "20px", marginBottom: "10px" }}
         className="flex-container justify-content-end align-items-center"
       >
         <img src={data.pinIcon} alt="" className={styles.pinIcon} />

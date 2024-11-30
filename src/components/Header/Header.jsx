@@ -45,13 +45,13 @@ function Header() {
                   Special Offers
                 </a>
                 <a
-                  href="/restraunts"
-                  className={`${styles.menuItem} ${isActive("/restraunts")}`}
+                  href="#"
+                  className={`${styles.menuItem} ${isActive("/restraunt")}`}
                 >
                   Restraunts
                 </a>
                 <a
-                  href="/track-order"
+                  href="#"
                   className={`${styles.menuItem} ${isActive("/track-order")}`}
                 >
                   Track Order

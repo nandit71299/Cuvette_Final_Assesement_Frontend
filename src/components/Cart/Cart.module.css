@@ -1,0 +1,108 @@
+/* Slide-in animation from right */
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%); /* Start off-screen to the right */
+  }
+  100% {
+    transform: translateX(0); /* Move to its final position */
+  }
+}
+
+/* Apply animation to cart container */
+.cartContainer {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 10%; /* Adjust as needed to control when the cart should stick */
+  margin: 0px 20px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: calc(100vh - 50px); /* Make the cart fill most of the viewport */
+  max-height: 600px; /* You can set this to whatever fits your layout */
+  overflow-y: auto; /* Allow the cart content to scroll if it exceeds the height */
+
+  /* Apply the slide-in animation */
+  animation: slideInFromRight 0.5s ease-out; /* 0.5s duration, ease-out timing function */
+}
+
+.cartTitle {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  padding: 10% 0%;
+  background-color: #028643;
+  color: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  position: sticky;
+  top: 0; /* Keep the title sticky at the top of the cart */
+}
+
+.cartItemsList {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #f9f9f911;
+  overflow-y: auto; /* Make sure the list can scroll if the content overflows */
+}
+
+.cartItem {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-self: center;
+}
+
+.cartItemName {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.cartItemPrice {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 25px;
+  color: #028643;
+}
+
+.itemQuantityContainer {
+  font-size: 24px;
+  font-weight: 700;
+  background-color: #fc8a06;
+  padding: 10px;
+  border-radius: 50%; /* Corrected to 50% for perfect circle */
+  display: flex; /* To center content inside the circle */
+  justify-content: center; /* Horizontal centering */
+  align-items: center; /* Vertical centering */
+}
+
+.itemQuantityContainer > h3 {
+  margin: 0;
+}
+
+.cartItemDescription {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0;
+}
+
+.cartItemRemoveButton {
+  background-color: transparent;
+  border: none;
+}
+
+.emptyCartContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}

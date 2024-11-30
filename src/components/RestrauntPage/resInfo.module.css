@@ -1,0 +1,221 @@
+/* Container holding the restaurant info */
+.resInfoContainer {
+  border-radius: 10px;
+  display: flex;
+  position: relative; /* Needed for absolute positioning of child elements */
+  background-size: cover !important; /* Ensures the background image covers the entire div */
+  background-position: center; /* Centers the background image */
+  background-repeat: no-repeat !important; /* Prevents the image from repeating */
+  align-items: center;
+  justify-content: space-between; /* Distribute space between left and right containers */
+  height: 100%; /* Ensure the container takes the full height */
+}
+
+/* Dark overlay for the background image */
+.resInfoContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(
+    2,
+    23,
+    49,
+    0.898
+  ); /* Dark black overlay with some transparency */
+  z-index: 1; /* Ensure the overlay is under the content */
+  border-radius: 10px;
+}
+
+/* Left content with restaurant info */
+.resInfoLeft {
+  display: flex;
+  flex-direction: column;
+  z-index: 2; /* Ensure content is above the background and overlay */
+  color: white;
+  padding: 5% 5%;
+  width: 50%; /* Ensures it takes half of the container width */
+  position: relative; /* Make sure it's positioned correctly */
+}
+
+/* Slogan style */
+.resSlogan {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 66px;
+  margin: 0;
+}
+
+/* Restaurant title style */
+.restrauntTitle {
+  font-size: 54px;
+  font-weight: 600;
+  line-height: 66px;
+  margin: 0;
+}
+
+/* Facilities section style */
+.resFacilities {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.resFacilities > button {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
+  padding: 5px 35px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  gap: 5px;
+}
+
+.resFacilities > button:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
+}
+
+.resFacilities img {
+  width: 30px;
+  height: 30px;
+}
+
+/* Right content with restaurant image */
+.resInfoRight {
+  z-index: 3;
+  display: flex;
+  justify-content: flex-end;
+  padding: 5% 5%;
+  width: 50%; /* Ensures it takes half of the container width */
+  position: relative;
+}
+
+/* Rating card style */
+.ratingCard {
+  position: absolute;
+  background-color: white;
+  color: black;
+  z-index: 4;
+  left: 100px;
+  bottom: 10%;
+  padding: 2% 2%;
+  text-align: center;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ratingCard h3 {
+  font-size: 3rem;
+  font-weight: normal;
+}
+
+.ratingCard i {
+  color: gold; /* For star icons */
+}
+
+/* Right image */
+.resInfoRight > img {
+  height: auto;
+  width: 80%; /* Adjust width to your needs */
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+}
+
+/* Styles for toast notifications (optional, since you’re using react-toastify) */
+.Toastify__toast-container {
+  z-index: 9999; /* Ensure toast is on top */
+}
+
+/* New styling for resTimings */
+.resTimings {
+  position: absolute;
+  background-color: #fc8a06;
+  padding: 1% 10%;
+  color: white;
+  z-index: 6;
+  bottom: -5%; /* Position it on top of the resInfoContainer */
+  border-radius: 0px 10px 10px 0px; /* Optional, for rounded corners */
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.ratingCard > p {
+  color: gray;
+}
+
+@media only screen and (max-width: 768px) {
+  .resFacilities {
+    flex-wrap: wrap;
+  }
+  .resInfoContainer {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    gap: 20px;
+    align-items: normal;
+  }
+  .resInfoRight {
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+  }
+  .restrauntTitle {
+    font-size: 30.55px;
+    font-weight: 600;
+    line-height: 36.65px;
+    width: fit-content;
+  }
+  .resSlogan {
+    font-size: 15.27px;
+    font-weight: 400;
+    line-height: 18.33px;
+    width: fit-content;
+  }
+  .resInfoRight > img {
+    width: 100%;
+  }
+  .resInfoLeft {
+    flex: 1;
+    width: fit-content;
+    gap: 20px;
+  }
+  .ratingCard h3 {
+    font-size: 20px;
+  }
+
+  .resFacilities button {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 21.6px;
+    padding: 10px 20px;
+  }
+
+  .ratingCard {
+    justify-content: center;
+    align-items: center;
+    left: 30px;
+    bottom: -5%;
+  }
+
+  .ratingCard p {
+    font-size: 12px;
+  }
+
+  .ratingCard i {
+    font-size: 10px;
+  }
+}

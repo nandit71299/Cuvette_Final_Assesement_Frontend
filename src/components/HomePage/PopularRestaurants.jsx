@@ -9,7 +9,7 @@ function PopularRestaurants() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const handleClick = (id) => {
-    navigate(`/login/${id}`);
+    navigate(`/restraunt?id=${id}`);
   };
 
   // Fetch the data when the component mounts
@@ -41,7 +41,7 @@ function PopularRestaurants() {
                 onClick={() => handleClick(restraunt._id)}
               >
                 <img
-                  src={restraunt.image}
+                  src={restraunt.logo}
                   className={styles.restrauntImage}
                   alt=""
                 />

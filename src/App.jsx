@@ -4,8 +4,9 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import "react-toastify/dist/ReactToastify.css";
 import { Provider, useSelector } from "react-redux";
 import store from "./redux/store";
-import HomePage from "./pages/HomePage/HomePage";
 import PrivateRoute from "./components/PrivateRoute";
+import HomePage from "./pages/HomePage/HomePage";
+import ProductPage from "./pages/RestrauntPage/RestrauntPage";
 
 function App() {
   return (
@@ -20,6 +21,14 @@ function App() {
             element={
               <PrivateRoute>
                 <HomePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/restraunt"
+            element={
+              <PrivateRoute>
+                <ProductPage />
               </PrivateRoute>
             }
           />

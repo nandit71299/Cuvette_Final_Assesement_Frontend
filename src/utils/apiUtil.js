@@ -1,5 +1,6 @@
 const API_PORT = import.meta.env.VITE_API_PORT;
-const apiUrl = `http://localhost:${API_PORT}/api`;
+const API_URL = import.meta.env.VITE_API_URL;
+const apiUrl = `${API_URL}:${API_PORT}/api`;
 
 import axios from "axios";
 
@@ -74,5 +75,45 @@ export const getAllRestraunts = async (data) => {
     return response.data;
   } catch (error) {
     return { success: false, message: "Internal Server Error" };
+  }
+};
+
+export const getRestraunt = async (data) => {
+  try {
+    const response = await axios.get(
+      `${apiUrl}/restraunts/getSingle/?id=${data.restrauntId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${data.token}`,
+        },
+      }
+    );
+    if (response.data.success) {
+      return response.data;
+    } else {
+      throw new Error(response.data.message);
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getItems = async (data) => {
+  try {
+    const response = await axios.get(
+      `${apiUrl}/items/getAll/?id=${data.restrauntId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${data.token}`,
+        },
+      }
+    );
+    if (response.data.success) {
+      return response.data;
+    } else {
+      throw new Error(response.data.message);
+    }
+  } catch (error) {
+    return error;
   }
 };

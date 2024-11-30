@@ -19,7 +19,7 @@ function HomePage() {
   const isMobile = useIsMobile();
   return (
     <div
-      className={` ${isMobile ? "gap-2" : "gap-1"} flex-container flex-column`}
+      className={` ${isMobile ? "gap-05" : "gap-1"} flex-container flex-column`}
     >
       {!isMobile && <OfferBanner />}
       <Header />

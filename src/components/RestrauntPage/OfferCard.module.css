@@ -1,0 +1,133 @@
+/* Main Card Container */
+.OfferCard {
+  height: 100%;
+  width: 30%; /* Adjust width to fit three items per row */
+  position: relative; /* Ensure the card can have absolute positioning for content */
+  border-radius: 10px; /* Optional: rounded corners for the card */
+  overflow: hidden; /* Prevent overflow from the image */
+}
+
+/* Image Styles */
+.OfferCard > img {
+  width: 100%; /* Ensure image takes full width */
+  height: 95%; /* Image takes 95% of the container height */
+  object-fit: cover; /* Ensures the image fills the container without distortion */
+  border-radius: 10px; /* Optional: rounded corners for image */
+}
+
+/* Gradient Overlay Styles */
+.gradientOverlay {
+  position: absolute;
+  background: linear-gradient(
+    225deg,
+    rgba(255, 255, 255, 0) 0.94%,
+    rgba(3, 8, 31, 0.19) 51.68%,
+    rgba(3, 8, 31, 0.89) 87.9%
+  );
+  height: 95%; /* Matches image height */
+  width: 100%; /* Full width */
+  top: 0; /* Align at the top */
+}
+
+/* Content Section (Text + Button) */
+.content {
+  position: absolute; /* Absolutely positioned to the bottom of the card */
+  bottom: 0; /* Stick content to the bottom */
+  left: 0;
+  right: 0;
+  display: flex; /* Flexbox for layout */
+  justify-content: space-between; /* Space out text and button */
+  align-items: end; /* Center vertically */
+  border-radius: 0 0 10px 10px; /* Optional: rounded bottom corners */
+}
+
+/* Text Content Styling */
+.content p {
+  margin: 0; /* Remove default margin */
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #fc8a06;
+}
+
+.content h3 {
+  margin: 0; /* Remove default margin */
+  color: white; /* Text color */
+  font-size: 18px; /* Larger font for the offer title */
+  font-weight: 600; /* Bold weight for emphasis */
+  margin-bottom: 10px;
+  margin-left: 10px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+/* Button Container */
+.cardButtonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: #ffffff90; /* Semi-transparent white background */
+  padding: 15px 25px; /* Padding around the button */
+  border-top-left-radius: 10px; /* Optional: rounded corners for the button container */
+}
+
+/* Button Styling */
+.cardButton {
+  font-family: poppins;
+  background-color: black; /* Black button background */
+  border: none; /* Remove border */
+  color: white; /* Button text color */
+  font-size: 30px; /* Larger font for button */
+  font-weight: 300; /* Bold text for button */
+  border-radius: 50%; /* Circular button */
+  width: 40px; /* Set fixed width */
+  height: 40px; /* Set fixed height */
+  display: flex; /* Center the '+' inside the button */
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+/* Hover Effect on Button */
+.cardButton:hover {
+  background-color: #fc8a06; /* Change color on hover */
+  transform: scale(1.1); /* Slightly scale the button on hover */
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+.offerCountContainer {
+  display: flex;
+  position: absolute;
+  background-color: black;
+  height: 50px;
+  top: 0;
+  right: 20px;
+  color: white;
+  align-items: center;
+  padding: 5px 15px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.offerCountContainer h5 {
+  margin: 0;
+}
+
+/* Additional Adjustments for Layout Flexibility (Optional) */
+@media (max-width: 768px) {
+  .OfferCard {
+    width: 45%; /* Adjust to fit 2 cards per row on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .OfferCard {
+    width: 100%; /* Stack the cards on very small screens */
+  }
+  .content h3 {
+    font-size: 16px; /* Adjust text size for small screens */
+  }
+  .cardButton {
+    width: 35px; /* Slightly smaller button on mobile */
+    height: 35px;
+  }
+}

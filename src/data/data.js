@@ -25,6 +25,18 @@ const data = {
   food: "https://s3-alpha-sig.figma.com/img/84b2/691f/8d3c41392c27f8ba967b28c003b6511d?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Upb1hTTgwUFB~KzOuzcbUqlTmCnz-RfMIQ6JtrU-ILSxosbMQOdPP~KxlyNEBBz-1JxeaT0WpbS2d6sPaPPINGPeM3qvUbKqqWP9bpVHzBcq9DVCQPFcJdT62b4X2em1V0mmkj3peRwqajV-TsQAw1tiyDtSnYeckPuwC~~1idCoVTUTA9LFvmjBzZD5b0CgXLRey77-c3vPH~~WfpZn7da9se4JbDuhIAjMdpkZlPFCesGbqxB-m-uiAlAKcvRWMeRVUKIJs0IrcFeP-rjQjhUShRz3LvbMP6TxnvcToBGwm4A4ChQsGZ9ZWbOZv4lw6VQsq~rfb84X9Fib271iIg__",
   order:
     "https://s3-alpha-sig.figma.com/img/80e6/0b66/ab934ae45238834b62ee67cff03882f6?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Y3eYiGtvI6a5lkHJoyI2CJZs49wwduIKyZMcSi0WnLH27XyfAiKh1SIu-CNi52OvowijFvhhXqiJnb3c2fRq3SYOhKtCfUIOq4thDFIFvxeBUiUmtQV6OpLoL7gdQs7TxE7Rqld8tVHcpEPIH7gIkzuAtWd3M7xJy51l11q1qwN~3gfjwiuVsIDQcCKaWymK8nkcGJ-vkNbtzr~EbR3PTD8Y7OFOpsh-JdwTigVUACj2Bt9P3ZdI~2oz1ypMR-ZKgrIhBstn4ScKzb7IQpoSnVc9MDj9DbE8EdvDVmtCBVrKayJpD0gbRc6vMmJjslCDKBTxuE2jZf8Kc1lljko~Hw__",
+  billIcon:
+    "https://s3-alpha-sig.figma.com/img/1175/932b/d4f14db78877d582a7b47d491c6e44f8?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cLP6PetCqmEbE9Qi22vx4QrfW8IQ-sPyovDLB~vB9ptg3McsQVyYn1CGDzhPEUQHaBhbmRYJxUJ2bQgvTsuAHrrsflPEbw0fyNPSxJ6oXEGx7SheFQGo29gJLe1eClnSRNYmlE8ufW-kTyLgiWjZugAlbFliOpmgZbiLuAwxXboEXO9nGIe1gJH1WGJEWpQ5fowCHyKDA7q8ZkteFLtSQFZ8IYjjLFwAo~F3Nd0-nH0Eh~ic9CuTEPzGEvf~8ku-~G5cAgBPn5HeddtQMDwr5FMDwoOYE0D0ChWUDZIFk-X7O14nVeg~ckcfuK7woezWu1Rk3nwhV-cH2dNTm5CIYQ__",
+  riderIcon:
+    "https://s3-alpha-sig.figma.com/img/7e95/eb39/b37fc1f87e73356c6e975041f028a1ad?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=J7iBSfzo2-PRSqCiZgXiZSniCURmJUJRAam6-phGZDp~jHnh~Qj7pwBTUWZAAsTtBWB3x61rHZ65Tzmvzl5tQR-CbdnBTObBTHu-I05ohdc4CGWnj92rUKHNpengLbPHFg3k3N4Ircy2f5GfA3fR8Mg04i4rOn5BvW8UwdxEeBCQcLIwNN3Z8M3S4ggZYecnIlsmgtiSUeHJTeGgSqIqksZSJFT823hrqBJBPVYXDzcUuVsY6EKp688fQU3959Tzjw7EDefAG8M~8Z-2k5EWpEd0W-0AKcF20qGcAX-Cnmi3PxP0wKEsopGft0EE3yAMQcFpBtqFV8sA5MX-v7i0Mg__",
+  clockIcon:
+    "https://www.figma.com/file/PwcM13xK4XBCiuX2M1iuOL/image/f4af98ab5df4214088b46729dbecdc94f40aac6d",
+  restrauntPageImage1:
+    "https://www.figma.com/file/PwcM13xK4XBCiuX2M1iuOL/image/5ba4c044fea2a4f9a42192c73c1f07bd6bb9953c",
+  restrauntPageImage2:
+    "https://s3-alpha-sig.figma.com/img/6814/9bd7/74bf16af2e8d58241b81d738de8241fc?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mNNsK1c~YZv2Xy0fLEJlzFdznVEqOI3zkzkTElQ6Q8OJWxb4jExEYpQDwhOlaZr5SaIFbHxSUEaLiryhp89eMpIilmVFlHkJa1CZY0V-fTJf0Uqw~R7h3ClufUzbsCYJpS0t9wb0-58UtXdHtq7Vy76IccQlgdD32y5jlYDXHN6ab7NMBwOqjI4vuoCJrh6WC4zMmnNI~Q3E1550oXDtbAZTKZ0LD8Ou9HQdAmnQBB-DOQyCoppYBYy4FvzC2sWBp6yrchQpZNLFudidAw1KqmJyw0hzlw4GhHx1oEy0XX4t540Lk~MrLbBgGDd0JaF400dI~jtyCQhQrRanmDg1bA__",
+  restrauntPageImage3:
+    "https://s3-alpha-sig.figma.com/img/5698/7e41/1c70b606338f6dee48dd33ac13bf15b2?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Y4i1B6YvUgLJA118O0ux7KC3LsfqEQh~28mNte~6swFgOG8PRcbxrFW7B48bd0rlGx4Ayy~2xUIBn4WpjZZzuJaO79A6xfCN~2X0AL2DTp7E2q6DTGuG8p3eP1Si4X0hbl1ElOPMwYEuaNUTtfEEQ-KpVvRWR2QO~JYIBjJqnZbSvSBKHcNmLKjEQ1rCxfbXSbDTQtqWlHieUo2BSId1bt2QbJHgq~AJdrzYLDsuOx9ve1H~Y0TROdswCxSwUiU~MXomZbwGz9LTHIPX9ZvxIzkT-q~rbxMQjB2aJa95ae~d1KdTas~-1Q-C7sSik2Cnz6s9ZaBRqKBCPdyEtBPQXQ__",
 };
 
 const dealsData = [
