@@ -4,16 +4,45 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../../redux/cartSlice"; // Now dispatching the thunk
 import { toast } from "react-toastify"; // If you want to show notifications
 import useIsMobile from "../../utils/isMobile";
+import { Navigate } from "react-router-dom";
 
 const Cart = (props) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart); // Accessing cart state from Redux
+  const [redirectToCheckout, setRedirectToCheckout] = React.useState(false);
 
   const handleRemoveFromCart = (itemId) => {
     dispatch(removeFromCart(itemId)); // Dispatch the thunk to remove item
   };
 
+  const handleCopyLink = () => {
+    // Get the current URL
+    const currentUrl = window.location.origin;
+
+    // Try to copy the URL to the clipboard
+    navigator.clipboard
+      .writeText(`${currentUrl}/view-order?cartId=${cartItems.cartId}`)
+      .then(() => {
+        // Show success message (optional)
+        toast.success("URL copied to clipboard");
+      })
+      .catch((err) => {
+        toast.error("Failed to copy the URL");
+      });
+  };
+
   const isMobile = useIsMobile();
+
+  const handleCheckoutClick = () => {
+    // You can add any additional logic before redirecting, like saving cart data to local storage or performing validation
+    setRedirectToCheckout(true);
+  };
+
+  // If redirectToCheckout is true, Navigate to the checkout page
+  if (redirectToCheckout) {
+    return <Navigate to={`/view-order?cartId=${cartItems.cartId}`} />;
+  }
+
   // Render cart items
   return (
     <div className={styles.cartContainer} style={{ ...props.styles }}>
@@ -45,7 +74,7 @@ const Cart = (props) => {
       <div className={styles.sharingOptionContainer}>
         <i className="bi bi-share-fill"></i>
         <p>Share this cart with your friends</p>
-        <button>Copy Link</button>
+        <button onClick={handleCopyLink}>Copy Link</button>
       </div>
       <div className={styles.cartTitle}>
         <i className="bi bi-basket2 bi-xxl" style={{ fontSize: "20px" }}></i>
@@ -140,7 +169,10 @@ const Cart = (props) => {
             <p>Starts at 16:50</p>
           </div>
         </div>
-        <div className={styles.checkoutButtonContainer}>
+        <div
+          className={styles.checkoutButtonContainer}
+          onClick={handleCheckoutClick}
+        >
           <i className="bi bi-arrow-right-circle-fill"></i>
           <button className={styles.checkoutButton}>Checkout</button>
         </div>

@@ -1,10 +1,173 @@
-.backIcon {
-  font-size: 32px;
-  cursor: pointer;
+.mainContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  width: 98%;
 }
 
 .navigationContainer {
   display: flex;
-  gap: 1rem;
   align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.backIcon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.pageTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Cart Details */
+.cartDetailsContainer {
+  width: 70%;
+
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #03081f;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #202938;
+}
+
+.cartItem:last-child {
+  border-bottom: none;
+}
+
+.cartItemImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.cartItemDetails {
+  flex-grow: 1;
+  padding-left: 10px;
+}
+
+.itemTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.itemQuantity {
+  font-size: 14px;
+  color: #888;
+}
+
+.itemPrice {
+  font-size: 16px;
+  font-weight: 600;
+  color: green;
+}
+
+/* Notes Section */
+.notesSection {
+  margin-top: 20px;
+}
+
+.notesLabel {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.notesInput {
+  width: 98%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #202938;
+  border-radius: 50px;
+  outline: none;
+}
+
+.notesInput:focus {
+  border-color: #555;
+}
+
+/* Empty Cart Message */
+.emptyCartMessage {
+  text-align: center;
+  font-size: 16px;
+  color: #888;
+}
+
+.proceedContainer {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  justify-self: center;
+}
+
+.delvieryInput {
+  cursor: pointer;
+  border-radius: 50px;
+  border: 1px solid #03081f;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.pinIcon {
+  border: 1px solid #03081f;
+  padding: 5px;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fc8a06;
+}
+
+.address {
+  flex-grow: 1;
+}
+
+.address p {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18.2px;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+.hrLine {
+  width: 100%;
+  border: 0.5px solid #202938;
+  border-radius: 50px;
+}
+
+.amountsContainer {
+  display: flex;
+  flex-direction: column;
+}
+.payButton {
+  text-align: center;
+  width: 100%;
+  background-color: #fc8a06;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-family: poppins;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.2px;
+  margin-top: 5px;
+  cursor: pointer;
 }

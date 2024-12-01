@@ -8,6 +8,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import HomePage from "./pages/HomePage/HomePage";
 import ProductPage from "./pages/RestrauntPage/RestrauntPage";
 import ViewOrder from "./pages/ViewOrderPage/ViewOrder";
+import Payment from "./pages/PaymentPage/Payment";
 
 function App() {
   return (
@@ -34,6 +35,14 @@ function App() {
             }
           />
           <Route path="/view-order" element={<ViewOrder />} />
+          <Route
+            path="/payment"
+            element={
+              <PrivateRoute>
+                <PaymentPage />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </Provider>

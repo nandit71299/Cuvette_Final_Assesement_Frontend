@@ -151,24 +151,21 @@ export const addToCart = async (data) => {
 };
 
 // Get the cart data
-export const getCartData = async (cartId = null) => {
+export const getCartData = async (cartId = null, token = null) => {
   try {
     let url = `${apiUrl}/cart/getCart`;
     let headers = {};
 
-    // Try to get token from localStorage if no cartId is provided
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      // If there's a token, send it in the Authorization header
+    // If cartId is provided, add it to the query parameters
+    if (cartId) {
+      url = `${url}?cartId=${cartId}`;
+    }
+    // If no cartId, check if token is available and add it to the headers
+    else if (token) {
       headers = {
         Authorization: `Bearer ${token}`,
       };
-    } else if (cartId) {
-      // If no token and a cartId is provided, use cartId in the query string
-      url = `${url}?cartId=${cartId}`;
     } else {
-      // If neither token nor cartId is found, return an error
       return {
         success: false,
         message: "No token or cartId found. Please log in or provide a cartId.",
@@ -185,7 +182,10 @@ export const getCartData = async (cartId = null) => {
         cartId: response.data.cartId,
       };
     } else {
-      return { success: false, message: response.data.message };
+      return {
+        success: false,
+        message: response.data.message || "Failed to fetch cart data.",
+      };
     }
   } catch (error) {
     return {

@@ -4,7 +4,7 @@ import {
   removeItemFromCartApi,
   addToCart,
 } from "../utils/apiUtil"; // Import utility functions
-
+import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
 const API_PORT = import.meta.env.VITE_API_PORT;
 const apiUrl = `${API_URL}:${API_PORT}/api`;
@@ -25,55 +25,20 @@ export const fetchCartData =
     dispatch(fetchCartRequest()); // Set loading state
 
     try {
-      const token = localStorage.getItem("token");
+      let cartData;
 
-      // Case 1: Use token if available
-      if (token) {
-        const {
-          success,
-          cart,
-          message,
-          cartId: fetchedCartId,
-        } = await getCartData(token);
-
-        if (!success) {
-          dispatch(fetchCartFailure(message || "No items found in the cart"));
-          return;
-        }
-
-        // Recalculate subtotal and total
-        const subTotal = cart.reduce(
-          (total, item) => total + item.price * item.quantity,
-          0
-        );
-        const deliveryFee = 5;
-        const total = subTotal + deliveryFee;
-
-        dispatch(
-          updateCart({
-            cartId: fetchedCartId, // Update cartId
-            items: cart,
-            subTotal,
-            total,
-            deliveryFee,
-          })
-        );
-        return;
-      }
-
-      // Case 2: If no token, try using cartId
+      // Case 1: Try fetching cart using cartId if provided
       if (cartId) {
-        const {
-          success,
-          cart,
-          message,
-          cartId: fetchedCartId,
-        } = await getCartData(cartId);
+        cartData = await getCartData(cartId); // Pass only cartId
 
-        if (!success) {
-          dispatch(fetchCartFailure(message || "No items found in the cart"));
+        if (!cartData.success) {
+          dispatch(
+            fetchCartFailure(cartData.message || "No items found in the cart")
+          );
           return;
         }
+
+        const { cart, cartId: fetchedCartId } = cartData;
 
         // Recalculate subtotal and total
         const subTotal = cart.reduce(
@@ -95,7 +60,48 @@ export const fetchCartData =
         return;
       }
 
-      // If neither token nor cartId is provided, fail gracefully
+      // Case 2: If no cartId, try fetching using token (if available)
+      const token = localStorage.getItem("token");
+      if (token) {
+        // Verify token validity before fetching data
+        const tokenVerification = await verifyToken(token);
+        if (!tokenVerification.success) {
+          dispatch(fetchCartFailure("Invalid or expired token."));
+          return;
+        }
+
+        cartData = await getCartData(null, token); // Pass token if cartId is not provided
+
+        if (!cartData.success) {
+          dispatch(
+            fetchCartFailure(cartData.message || "No items found in the cart")
+          );
+          return;
+        }
+
+        const { cart, cartId: fetchedCartId } = cartData;
+
+        // Recalculate subtotal and total
+        const subTotal = cart.reduce(
+          (total, item) => total + item.price * item.quantity,
+          0
+        );
+        const deliveryFee = 5;
+        const total = subTotal + deliveryFee;
+
+        dispatch(
+          updateCart({
+            cartId: fetchedCartId, // Update cartId
+            items: cart,
+            subTotal,
+            total,
+            deliveryFee,
+          })
+        );
+        return;
+      }
+
+      // Case 3: If neither cartId nor token is provided, return an error
       dispatch(
         fetchCartFailure(
           "No token or cartId found. Please log in or provide a cartId."
@@ -105,6 +111,33 @@ export const fetchCartData =
       dispatch(fetchCartFailure(error.message || "Error fetching cart data"));
     }
   };
+
+// Token verification utility function
+export const verifyToken = async (token) => {
+  try {
+    const response = await axios.get(`${apiUrl}/verifyToken`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.status === 200 && response.data.success) {
+      return response.data; // Token is valid
+    } else {
+      throw new Error(response.data.message);
+    }
+  } catch (error) {
+    if (error.response) {
+      const status = error.response.status;
+      const message = error.response.data.message || "An error occurred";
+      return { success: false, message };
+    }
+    return {
+      success: false,
+      message: error.message || "Network error, please try again later.",
+    };
+  }
+};
 
 export const removeFromCart = (itemId) => async (dispatch) => {
   dispatch(fetchCartRequest()); // Set loading state

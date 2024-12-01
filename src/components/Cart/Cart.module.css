@@ -284,6 +284,7 @@
 }
 
 .checkoutButtonContainer {
+  cursor: pointer;
   background: #028643;
   display: flex;
   padding: 10px 20px;
@@ -301,6 +302,7 @@
   color: white;
   border: none;
   font-family: poppins;
+  cursor: pointer;
 }
 
 .checkoutButtonContainer i {
