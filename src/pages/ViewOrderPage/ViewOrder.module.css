@@ -1,0 +1,10 @@
+.backIcon {
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.navigationContainer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}

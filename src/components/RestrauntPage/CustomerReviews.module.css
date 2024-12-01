@@ -23,7 +23,7 @@ h2 {
   display: flex;
   gap: 10px;
   position: absolute;
-  top: 10px;
+  top: 45px;
   right: 20px; /* Center horizontally */
   transform: translateX(
     -50%

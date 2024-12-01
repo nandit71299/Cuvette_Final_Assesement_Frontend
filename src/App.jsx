@@ -7,6 +7,7 @@ import store from "./redux/store";
 import PrivateRoute from "./components/PrivateRoute";
 import HomePage from "./pages/HomePage/HomePage";
 import ProductPage from "./pages/RestrauntPage/RestrauntPage";
+import ViewOrder from "./pages/ViewOrderPage/ViewOrder";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path="/view-order" element={<ViewOrder />} />
         </Routes>
       </BrowserRouter>
     </Provider>

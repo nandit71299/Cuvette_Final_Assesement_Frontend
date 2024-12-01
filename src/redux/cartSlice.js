@@ -19,46 +19,92 @@ const initialState = {
   total: 0, // Total (subtotal + delivery fee)
 };
 
-export const fetchCartData = () => async (dispatch) => {
-  dispatch(fetchCartRequest()); // Set loading state
+export const fetchCartData =
+  (cartId = null) =>
+  async (dispatch) => {
+    dispatch(fetchCartRequest()); // Set loading state
 
-  try {
-    const token = localStorage.getItem("token");
+    try {
+      const token = localStorage.getItem("token");
 
-    if (!token) {
-      dispatch(fetchCartFailure("No token found, please log in."));
-      return;
+      // Case 1: Use token if available
+      if (token) {
+        const {
+          success,
+          cart,
+          message,
+          cartId: fetchedCartId,
+        } = await getCartData(token);
+
+        if (!success) {
+          dispatch(fetchCartFailure(message || "No items found in the cart"));
+          return;
+        }
+
+        // Recalculate subtotal and total
+        const subTotal = cart.reduce(
+          (total, item) => total + item.price * item.quantity,
+          0
+        );
+        const deliveryFee = 5;
+        const total = subTotal + deliveryFee;
+
+        dispatch(
+          updateCart({
+            cartId: fetchedCartId, // Update cartId
+            items: cart,
+            subTotal,
+            total,
+            deliveryFee,
+          })
+        );
+        return;
+      }
+
+      // Case 2: If no token, try using cartId
+      if (cartId) {
+        const {
+          success,
+          cart,
+          message,
+          cartId: fetchedCartId,
+        } = await getCartData(cartId);
+
+        if (!success) {
+          dispatch(fetchCartFailure(message || "No items found in the cart"));
+          return;
+        }
+
+        // Recalculate subtotal and total
+        const subTotal = cart.reduce(
+          (total, item) => total + item.price * item.quantity,
+          0
+        );
+        const deliveryFee = 5;
+        const total = subTotal + deliveryFee;
+
+        dispatch(
+          updateCart({
+            cartId: fetchedCartId, // Update cartId
+            items: cart,
+            subTotal,
+            total,
+            deliveryFee,
+          })
+        );
+        return;
+      }
+
+      // If neither token nor cartId is provided, fail gracefully
+      dispatch(
+        fetchCartFailure(
+          "No token or cartId found. Please log in or provide a cartId."
+        )
+      );
+    } catch (error) {
+      dispatch(fetchCartFailure(error.message || "Error fetching cart data"));
     }
-
-    // Use the utility function to get the cart data
-    const { success, cart, message, cartId } = await getCartData(token);
-
-    if (!success) {
-      dispatch(fetchCartFailure(message || "No items found in the cart"));
-      return;
-    }
-
-    // Recalculate subtotal and total
-    const subTotal = cart.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
-    const deliveryFee = 5;
-    const total = subTotal + deliveryFee;
-
-    dispatch(
-      updateCart({
-        cartId, // Update cartId
-        items: cart,
-        subTotal,
-        total,
-        deliveryFee,
-      })
-    );
-  } catch (error) {
-    dispatch(fetchCartFailure(error.message || "Error fetching cart data"));
-  }
-};
+  };
 
 export const removeFromCart = (itemId) => async (dispatch) => {
   dispatch(fetchCartRequest()); // Set loading state

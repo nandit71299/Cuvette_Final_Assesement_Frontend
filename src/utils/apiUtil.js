@@ -151,13 +151,32 @@ export const addToCart = async (data) => {
 };
 
 // Get the cart data
-export const getCartData = async (token) => {
+export const getCartData = async (cartId = null) => {
   try {
-    const response = await axios.get(`${apiUrl}/cart/getCart`, {
-      headers: {
+    let url = `${apiUrl}/cart/getCart`;
+    let headers = {};
+
+    // Try to get token from localStorage if no cartId is provided
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      // If there's a token, send it in the Authorization header
+      headers = {
         Authorization: `Bearer ${token}`,
-      },
-    });
+      };
+    } else if (cartId) {
+      // If no token and a cartId is provided, use cartId in the query string
+      url = `${url}?cartId=${cartId}`;
+    } else {
+      // If neither token nor cartId is found, return an error
+      return {
+        success: false,
+        message: "No token or cartId found. Please log in or provide a cartId.",
+      };
+    }
+
+    // Make the API request
+    const response = await axios.get(url, { headers });
 
     if (response.data.success) {
       return {

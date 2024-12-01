@@ -21,8 +21,10 @@ function HomePage() {
     <div
       className={` ${isMobile ? "gap-05" : "gap-1"} flex-container flex-column`}
     >
-      {!isMobile && <OfferBanner />}
-      <Header />
+      <div className="safeArea">{!isMobile && <OfferBanner />}</div>
+      <div className="safeArea">
+        <Header />
+      </div>
       {isMobile && <MobileCartMenu />}
       <div className="safeArea">
         <HeroSection />

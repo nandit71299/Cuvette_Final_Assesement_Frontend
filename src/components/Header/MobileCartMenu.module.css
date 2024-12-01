@@ -43,3 +43,14 @@
   line-height: 21px;
   margin: 0;
 }
+
+.cart {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  background-color: rgba(128, 128, 128, 0.934);
+  z-index: 99999;
+  width: 100%;
+}

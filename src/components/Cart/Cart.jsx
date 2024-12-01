@@ -3,8 +3,9 @@ import styles from "./Cart.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../../redux/cartSlice"; // Now dispatching the thunk
 import { toast } from "react-toastify"; // If you want to show notifications
+import useIsMobile from "../../utils/isMobile";
 
-const Cart = () => {
+const Cart = (props) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart); // Accessing cart state from Redux
 
@@ -12,9 +13,35 @@ const Cart = () => {
     dispatch(removeFromCart(itemId)); // Dispatch the thunk to remove item
   };
 
+  const isMobile = useIsMobile();
   // Render cart items
   return (
-    <div className={styles.cartContainer}>
+    <div className={styles.cartContainer} style={{ ...props.styles }}>
+      {isMobile && (
+        <div
+          style={{
+            textAlign: "end",
+            display: "flex",
+            justifyContent: "end",
+            marginBottom: "20px",
+          }}
+        >
+          <p
+            onClick={props.toggleVisibility}
+            style={{
+              background: "white",
+              padding: "10px",
+              height: "25px",
+              width: "25px",
+              borderRadius: "50%",
+              textAlign: "center",
+            }}
+          >
+            X
+          </p>
+        </div>
+      )}
+
       <div className={styles.sharingOptionContainer}>
         <i className="bi bi-share-fill"></i>
         <p>Share this cart with your friends</p>
@@ -24,7 +51,10 @@ const Cart = () => {
         <i className="bi bi-basket2 bi-xxl" style={{ fontSize: "20px" }}></i>
         <h3>My Basket</h3>
       </div>
-      <div className={styles.cartItemsList}>
+      <div
+        className={styles.cartItemsList}
+        style={{ backgroundColor: isMobile ? "white" : "" }}
+      >
         {cartItems.items.length > 0 ? (
           cartItems.items.map((item) => (
             <div key={item._id}>

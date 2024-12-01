@@ -157,7 +157,9 @@ function RestrauntPage() {
     <div className={styles.mainContainer}>
       <div className="safeArea">
         {!isMobile && <OfferBanner />}
-        <Header />
+        <div className="safeArea">
+          <Header />
+        </div>
         <div style={{ marginTop: "15px" }}>
           {isMobile && <MobileCartMenu />}
         </div>
