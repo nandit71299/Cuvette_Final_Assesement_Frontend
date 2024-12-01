@@ -1,10 +1,8 @@
-// RestrauntPage.js
-
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getItems, getRestraunt } from "../../utils/apiUtil";
 import { toast, ToastContainer } from "react-toastify";
-import { Header, MobileCartMenu, OfferBanner } from "../../components";
+import { Footer, Header, MobileCartMenu, OfferBanner } from "../../components";
 import useIsMobile from "../../utils/isMobile";
 import styles from "./RestrauntPage.module.css";
 import assets from "../../data/data";
@@ -18,6 +16,10 @@ import {
 } from "../../redux/cartSlice";
 import Cart from "../../components/Cart/Cart";
 import { addToCart } from "../../utils/apiUtil";
+import ResOperationalTimings from "../../components/RestrauntPage/ ResOperationalTimings";
+import ResMap from "./ResMap";
+import CustomerReviews from "../../components/RestrauntPage/CustomerReviews";
+import PopularRestaurants from "../../components/HomePage/PopularRestaurants";
 
 function RestrauntPage() {
   const isMobile = useIsMobile();
@@ -28,6 +30,7 @@ function RestrauntPage() {
   const cartItems = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const [itemsData, setItemsData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(""); // Added state for search query
 
   useEffect(() => {
     getRestraunt({ token, restrauntId })
@@ -61,37 +64,31 @@ function RestrauntPage() {
   }, [dispatch]);
 
   const addItemToCart = async (item) => {
-    // Check if cartItems.items is an array before proceeding
-
     if (!Array.isArray(cartItems.items)) {
       console.error("cartItems.items is not an array:", cartItems.items);
       return;
     }
 
-    // Check for the item in the cart using the correct identifier (_id or item_id)
     const existingItemIndex = cartItems.items.findIndex(
-      (cartItem) => cartItem._id === item._id // Compare _id for both cartItem and item
+      (cartItem) => cartItem._id === item._id
     );
 
     let updatedItems = [];
 
     if (existingItemIndex !== -1) {
-      // If item exists, update quantity locally
       updatedItems = cartItems.items.map((cartItem) => {
         if (cartItem._id === item._id) {
           return {
             ...cartItem,
-            quantity: cartItem.quantity + 1, // Increase quantity by 1
+            quantity: cartItem.quantity + 1,
           };
         }
         return cartItem;
       });
     } else {
-      // If item doesn't exist in the cart, add it with quantity 1
       updatedItems = [...cartItems.items, { ...item, quantity: 1 }];
     }
 
-    // Safely calculate the updated subtotal and total
     const updatedSubTotal = updatedItems.reduce(
       (sum, cartItem) => sum + cartItem.price * cartItem.quantity,
       0
@@ -99,37 +96,29 @@ function RestrauntPage() {
 
     const updatedTotal = updatedSubTotal + cartItems.deliveryFee;
 
-    // Dispatch the updateCart action to Redux (update local state)
     dispatch(
       updateCart({
         items: updatedItems,
         subTotal: updatedSubTotal,
         total: updatedTotal,
-        deliveryFee: cartItems.deliveryFee, // Use the existing delivery fee from the state
+        deliveryFee: cartItems.deliveryFee,
       })
     );
 
-    // Now sync the updated cart with the backend API
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        toast.error("You must be logged in to update the cart.");
-        return;
-      }
-
       const response = await addToCart({
         itemId: item._id,
         token,
       });
 
       if (response.success) {
-        // Update Redux state with the new cart from the backend
         dispatch(
           updateCart({
-            items: response.cart.item, // Use the cart returned from the backend
-            subTotal: response.cart.totalPrice, // Update subtotal
-            total: response.cart.totalPrice + cartItems.deliveryFee, // Calculate new total
-            deliveryFee: cartItems.deliveryFee, // Use the existing delivery fee from the state
+            cartId: response.cartId,
+            items: response.cart.item,
+            subTotal: response.cart.totalPrice,
+            total: response.cart.totalPrice + cartItems.deliveryFee,
+            deliveryFee: cartItems.deliveryFee,
           })
         );
         toast.success("Item added to cart!");
@@ -149,6 +138,21 @@ function RestrauntPage() {
     return acc;
   }, {});
 
+  // Filter items based on search query
+  const filteredItems = Object.keys(groupedItems).reduce((acc, category) => {
+    const filteredCategoryItems = groupedItems[category].filter((item) => {
+      const itemTitle = item.title.toLowerCase();
+      const itemDescription = item.description.toLowerCase();
+      const query = searchQuery.toLowerCase();
+      return itemTitle.includes(query) || itemDescription.includes(query);
+    });
+
+    if (filteredCategoryItems.length > 0) {
+      acc[category] = filteredCategoryItems;
+    }
+    return acc;
+  }, {});
+
   return (
     <div className={styles.mainContainer}>
       <div className="safeArea">
@@ -160,6 +164,7 @@ function RestrauntPage() {
         <ResInfo data={data} assets={assets} />
         <ToastContainer />
       </div>
+
       {!isMobile && (
         <div className={`${styles.searchContainer} safeArea`}>
           <h3>All Offers from {data.name}</h3>
@@ -167,10 +172,13 @@ function RestrauntPage() {
             type="text"
             className={styles.searchInput}
             placeholder="Search from menu..."
+            value={searchQuery} // Bind search query to the input
+            onChange={(e) => setSearchQuery(e.target.value)} // Update search query state
           />
           <i className={`bi bi-search ${styles.searchIcon}`}></i>
         </div>
       )}
+
       <div className={styles.categoryStripContainer}>
         <div className={styles.categoryStrip}>
           <button className={styles.active}>Offers</button>
@@ -185,6 +193,7 @@ function RestrauntPage() {
           <button>Orbit™️</button>
         </div>
       </div>
+
       <div className={styles.mainItemsContainer}>
         <div className={styles.ItemsContainer}>
           {!isMobile && (
@@ -209,13 +218,16 @@ function RestrauntPage() {
             </div>
           )}
           <div className={`safeArea ${styles.itemListContainer}`}>
-            {Object.keys(groupedItems).map((category) => (
+            {Object.keys(filteredItems).map((category) => (
               <div key={category} className={styles.categorySection}>
                 <h3 className={styles.categoryTitle}>{category}</h3>
                 <div className={styles.itemList}>
-                  {groupedItems[category].map((item) => (
-                    <div className={styles.itemCardWrapperContainer}>
-                      <div key={item._id} className={styles.itemCard}>
+                  {filteredItems[category].map((item) => (
+                    <div
+                      className={styles.itemCardWrapperContainer}
+                      key={item._id}
+                    >
+                      <div className={styles.itemCard}>
                         <div className={styles.itemInfo}>
                           <h4 className={styles.itemTitle}>{item.title}</h4>
                           <p className={styles.itemDescription}>
@@ -245,8 +257,31 @@ function RestrauntPage() {
           </div>
         </div>
 
-        {cartItems.items.length > 0 && <Cart />}
+        {!isMobile && cartItems.items.length > 0 && <Cart />}
       </div>
+      {!isMobile && (
+        <div className="safeArea">
+          <ResOperationalTimings website={data.website} phone={data.phone} />
+        </div>
+      )}
+
+      <div style={{ padding: isMobile ? "15px" : "40px" }}>
+        <ResMap
+          lat={data.latitude}
+          long={data.longitude}
+          address={data.address}
+          phone={data.phone}
+          website={data.website}
+          resName={data.name}
+        />
+      </div>
+      <div>
+        <CustomerReviews />
+      </div>
+      <div style={{ marginTop: isMobile ? "" : "20px" }}>
+        <PopularRestaurants title="Similiar Restraunts" />
+      </div>
+      <Footer />
     </div>
   );
 }

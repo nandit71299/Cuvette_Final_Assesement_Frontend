@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./MobileCartMenu.module.css";
 import data from "../../data/data";
 function MobileCartMenu() {
+  const handleCartClick = () => {};
   return (
     <div
       className={`${styles.mainContainer} flex-container flex-column gap-05`}
@@ -20,7 +21,7 @@ function MobileCartMenu() {
           />
           <p className={styles.userName}>Hey User</p>
         </div>
-        <div className={styles.cartInfo}>
+        <div className={styles.cartInfo} onClick={handleCartClick}>
           <img
             src={data.cartIcon}
             alt=""

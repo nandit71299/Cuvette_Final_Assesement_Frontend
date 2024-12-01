@@ -4,31 +4,25 @@ const apiUrl = `${API_URL}:${API_PORT}/api`;
 
 import axios from "axios";
 
+// Login utility function
 export const login = async (data) => {
   try {
     const response = await axios.post(`${apiUrl}/users/signin`, data);
 
-    // If the response is successful (200 status and success flag)
     if (response.status === 200 && response.data.success) {
       return response.data;
     } else {
-      throw new Error(response.data.message); // Handle unsuccessful responses
+      throw new Error(response.data.message);
     }
   } catch (error) {
-    // Check if the error is a response from the server
     if (error.response) {
-      // If server responds with a 404 (Not Found), or any other error status
       const status = error.response.status;
-      const message = error.response.data.message || "An error occurred"; // Use server message if available
+      const message = error.response.data.message || "An error occurred";
       if (status === 404 || status === 401) {
-        return { success: false, message: message }; // Return the server's message for 404
+        return { success: false, message };
       }
-
-      // For other errors, return the response message or fallback to default error message
-      return { success: false, message: message };
+      return { success: false, message };
     }
-
-    // If there's no response (network error or something else), return a general error message
     return {
       success: false,
       message: error.message || "Network error, please try again later.",
@@ -36,6 +30,7 @@ export const login = async (data) => {
   }
 };
 
+// Token verification utility function
 export const verifyToken = async (token) => {
   try {
     const response = await axios.get(`${apiUrl}/verifyToken`, {
@@ -45,7 +40,7 @@ export const verifyToken = async (token) => {
     });
 
     if (response.status === 200 && response.data.success) {
-      return response.data; // Return response if the token is valid
+      return response.data; // Token is valid
     } else {
       throw new Error(response.data.message);
     }
@@ -53,10 +48,7 @@ export const verifyToken = async (token) => {
     if (error.response) {
       const status = error.response.status;
       const message = error.response.data.message || "An error occurred";
-      if (status === 404) {
-        return { success: false, message: message };
-      }
-      return { success: false, message: message };
+      return { success: false, message };
     }
     return {
       success: false,
@@ -65,6 +57,7 @@ export const verifyToken = async (token) => {
   }
 };
 
+// Get all restaurants
 export const getAllRestraunts = async (data) => {
   try {
     const response = await axios.get(`${apiUrl}/restraunts/getAll`, {
@@ -78,6 +71,7 @@ export const getAllRestraunts = async (data) => {
   }
 };
 
+// Get a single restaurant
 export const getRestraunt = async (data) => {
   try {
     const response = await axios.get(
@@ -98,6 +92,7 @@ export const getRestraunt = async (data) => {
   }
 };
 
+// Get items of a specific restaurant
 export const getItems = async (data) => {
   try {
     const response = await axios.get(
@@ -118,24 +113,29 @@ export const getItems = async (data) => {
   }
 };
 
+// Add an item to the cart
 export const addToCart = async (data) => {
   try {
     const response = await axios.post(
       `${apiUrl}/cart/add-to-cart`,
       {
-        itemId: data.itemId, // Send the item ID to the backend
+        itemId: data.itemId,
       },
       {
         headers: {
-          Authorization: `Bearer ${data.token}`, // Authorization token
+          Authorization: `Bearer ${data.token}`,
         },
       }
     );
 
     if (response.data.success) {
-      return { success: true, cart: response.data.cart }; // Return the updated cart
+      return {
+        success: true,
+        cart: response.data.cart,
+        cartId: response.data.cartId,
+      };
     } else {
-      throw new Error(response.data.message); // Handle unsuccessful responses
+      throw new Error(response.data.message);
     }
   } catch (error) {
     if (error.response) {
@@ -150,6 +150,7 @@ export const addToCart = async (data) => {
   }
 };
 
+// Get the cart data
 export const getCartData = async (token) => {
   try {
     const response = await axios.get(`${apiUrl}/cart/getCart`, {
@@ -159,7 +160,11 @@ export const getCartData = async (token) => {
     });
 
     if (response.data.success) {
-      return { success: true, cart: response.data.cart };
+      return {
+        success: true,
+        cart: response.data.cart,
+        cartId: response.data.cartId,
+      };
     } else {
       return { success: false, message: response.data.message };
     }
@@ -171,7 +176,7 @@ export const getCartData = async (token) => {
   }
 };
 
-// Utility function to remove an item from the cart
+// Remove an item from the cart
 export const removeItemFromCartApi = async (token, itemId) => {
   try {
     const response = await axios.post(
@@ -185,7 +190,11 @@ export const removeItemFromCartApi = async (token, itemId) => {
     );
 
     if (response.data.success) {
-      return { success: true, cart: response.data.cart };
+      return {
+        success: true,
+        cart: response.data.cart,
+        cartId: response.data.cartId,
+      };
     } else {
       return { success: false, message: response.data.message };
     }

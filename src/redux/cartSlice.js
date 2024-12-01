@@ -12,6 +12,7 @@ const apiUrl = `${API_URL}:${API_PORT}/api`;
 const initialState = {
   loading: false,
   error: null,
+  cartId: null, // The ID of the cart
   items: [], // List of items in the cart
   subTotal: 0, // Subtotal (calculated from item prices)
   deliveryFee: 5, // Default delivery fee
@@ -30,7 +31,7 @@ export const fetchCartData = () => async (dispatch) => {
     }
 
     // Use the utility function to get the cart data
-    const { success, cart, message } = await getCartData(token);
+    const { success, cart, message, cartId } = await getCartData(token);
 
     if (!success) {
       dispatch(fetchCartFailure(message || "No items found in the cart"));
@@ -47,6 +48,7 @@ export const fetchCartData = () => async (dispatch) => {
 
     dispatch(
       updateCart({
+        cartId, // Update cartId
         items: cart,
         subTotal,
         total,
@@ -70,7 +72,7 @@ export const removeFromCart = (itemId) => async (dispatch) => {
     }
 
     // Use the utility function to remove the item from the cart
-    const { success, cart, message } = await removeItemFromCartApi(
+    const { success, cart, message, cartId } = await removeItemFromCartApi(
       token,
       itemId
     );
@@ -86,6 +88,7 @@ export const removeFromCart = (itemId) => async (dispatch) => {
 
       dispatch(
         updateCart({
+          cartId, // Update cartId
           items: cart.item,
           subTotal,
           total,
@@ -114,7 +117,10 @@ export const addItemToCart = (itemId) => async (dispatch) => {
     }
 
     // Use the utility function to add the item to the cart
-    const { success, cart, message } = await addToCart({ itemId, token });
+    const { success, cart, message, cartId } = await addToCart({
+      itemId,
+      token,
+    });
 
     if (success) {
       // Update the cart in Redux after successful addition
@@ -127,6 +133,7 @@ export const addItemToCart = (itemId) => async (dispatch) => {
 
       dispatch(
         updateCart({
+          cartId, // Update cartId
           items: cart,
           subTotal,
           total,
@@ -156,9 +163,9 @@ const cartSlice = createSlice({
     },
 
     updateCart: (state, action) => {
-      const { items, subTotal, total, deliveryFee } = action.payload;
-
-      // Update state with new values
+      const { items, subTotal, total, deliveryFee, cartId } = action.payload;
+      // Update state with new values, including cartId
+      state.cartId = cartId;
       state.items = items;
       state.subTotal = subTotal;
       state.deliveryFee = deliveryFee;

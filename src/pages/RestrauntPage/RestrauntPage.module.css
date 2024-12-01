@@ -220,6 +220,18 @@
     padding: 5px 15px;
   }
 
+  .itemListContainer h3 {
+    padding-left: 30px;
+  }
+
+  .itemCardWrapperContainer {
+    margin: 10px;
+  }
+
+  .itemList {
+    justify-content: center;
+  }
+
   .categoryStripContainer {
     padding: 10px;
   }
@@ -227,7 +239,6 @@
   /* Adjust item card layout on smaller screens */
   .itemCard {
     width: 100%;
-    flex-direction: column;
     height: auto; /* Allow the card to grow with content */
     gap: 10px;
   }
@@ -235,6 +246,21 @@
   .itemDetails {
     max-width: 100%;
     margin-bottom: 10px; /* Give some spacing between details and image */
+  }
+
+  .itemTitle {
+    font-size: 16.09px;
+    font-weight: 600;
+    line-height: 18.5px;
+  }
+  .itemDescription {
+    font-size: 11.26px;
+    font-weight: 400;
+    line-height: 20.11px;
+  }
+
+  .itemInfo {
+    width: 50%;
   }
 
   .itemImageContainer {

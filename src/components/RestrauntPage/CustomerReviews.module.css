@@ -1,0 +1,235 @@
+.container {
+  background-color: #f3f3f3;
+  padding: 40px 20px;
+  border-radius: 8px;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.navigation {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  top: 10px;
+  right: 20px; /* Center horizontally */
+  transform: translateX(
+    -50%
+  ); /* Adjust the horizontal position to truly center it */
+}
+
+.navButton {
+  background-color: #fc8a06;
+  border: none;
+  color: #fff;
+  padding: 10px 15px;
+  font-size: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navButton:hover {
+  background-color: #ff9a30;
+}
+
+.reviewsWrapper {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+}
+
+.reviewsWrapper::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+.reviewCard {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  min-width: 300px; /* Ensures cards are scrollable horizontally */
+  max-width: 400px;
+  text-align: left;
+  flex-shrink: 0; /* Prevent cards from shrinking */
+  width: 100%;
+}
+
+.profile {
+  display: flex;
+  align-items: flex-start; /* Align items to the top */
+  gap: 15px; /* Space between profile image and text */
+  margin-bottom: 15px;
+}
+
+.profileImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 21px;
+  margin: 0;
+}
+
+.location {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #fc8a06;
+  margin: 0;
+}
+
+.details {
+  display: flex;
+  gap: 15px; /* Space between date, rating */
+  align-items: center;
+  margin-top: 5px;
+}
+
+.dateAndRating {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+}
+
+.date {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #888;
+  padding: 0;
+}
+
+.rating {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  color: #fc8a06;
+}
+
+.reviewText {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 27px;
+  margin-top: 10px;
+}
+
+.averageReviewContainer {
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-40%); /* Correct centering */
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.averageReviewCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: white;
+  height: min-content;
+  width: max-content;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 30px;
+  border-radius: 10px;
+}
+
+.averageReviewCard > h1 {
+  font-size: 42px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.averageReviewCard > div > i {
+  color: gold;
+  margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+  .titleWrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navigation {
+    justify-content: center;
+    bottom: 0px;
+    left: 50%;
+    top: auto;
+    transform: translateX(-50%); /* Correct centering */
+    margin-bottom: 10px;
+  }
+
+  .reviewsWrapper {
+    flex-direction: row;
+  }
+
+  .reviewCard {
+    width: 90%;
+  }
+
+  /* Move the average review card to top-right corner */
+  .averageReviewContainer {
+    top: -30px;
+    right: 10px;
+    transform: translateX(0);
+    height: max-content;
+  }
+
+  .averageReviewCard > h1 {
+    font-size: 18px;
+  }
+  .averageReviewCard > div > i {
+    font-size: 8px;
+  }
+
+  .averageReviewCard > p {
+    font-size: 8px;
+  }
+
+  .averageReviewCard {
+    gap: 0px;
+    padding: 10px 10px;
+  }
+
+  .titleWrapper h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 36px;
+  }
+
+  /* Adjust the review wrapper layout to accommodate smaller screens */
+  .reviewsWrapper {
+    padding-bottom: 60px; /* Space for the arrows at the bottom */
+  }
+  .container {
+    margin-top: 20px;
+  }
+}

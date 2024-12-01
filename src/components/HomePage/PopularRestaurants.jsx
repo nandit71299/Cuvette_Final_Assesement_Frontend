@@ -4,12 +4,12 @@ import { getAllRestraunts } from "../../utils/apiUtil";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-function PopularRestaurants() {
+function PopularRestaurants(props) {
   const token = localStorage.getItem("token");
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const handleClick = (id) => {
-    navigate(`/restraunt?id=${id}`);
+    window.location = `/restraunt?id=${id}`;
   };
 
   // Fetch the data when the component mounts
@@ -31,7 +31,9 @@ function PopularRestaurants() {
   return (
     <div>
       <div className="safeArea flex-container flex-column">
-        <h1 className={styles.containerTitle}>Popular Restaurants</h1>
+        <h1 className={styles.containerTitle}>
+          {props.title || "Popular Restaurants"}
+        </h1>
         <div className={`${styles.restrauntsCardsContainer}`}>
           {data.map((restraunt) => {
             return (
