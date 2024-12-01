@@ -8,7 +8,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import HomePage from "./pages/HomePage/HomePage";
 import ProductPage from "./pages/RestrauntPage/RestrauntPage";
 import ViewOrder from "./pages/ViewOrderPage/ViewOrder";
-import Payment from "./pages/PaymentPage/Payment";
+import PaymentPage from "./pages/PaymentPage/Payment";
 
 function App() {
   return (
