@@ -3,13 +3,16 @@
   gap: 20px;
   justify-content: center;
   width: 98%;
+  padding: 20px;
 }
 
 .navigationContainer {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
+  /* margin-top: -10px; */
+  padding-top: 20px;
+  border-top: 1px solid #0000004d;
 }
 
 .backIcon {
@@ -18,9 +21,9 @@
 }
 
 .pageTitle {
-  font-size: 20px;
+  font-size: 32px;
   font-weight: 600;
-  margin: 0;
+  line-height: 48px;
 }
 
 /* Cart Details */
@@ -29,7 +32,7 @@
 
   padding: 20px;
   border-radius: 8px;
-  border: 1px solid #03081f;
+  border: 1px solid #afafaf;
 }
 
 .cartItem {
@@ -37,7 +40,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 0;
-  border-bottom: 1px solid #202938;
+  border-bottom: 1px solid #afafaf;
 }
 
 .cartItem:last-child {
@@ -57,20 +60,24 @@
 }
 
 .itemTitle {
+  margin: 0;
   font-size: 16px;
   font-weight: 600;
-  margin: 0;
+  line-height: 24px;
 }
 
 .itemQuantity {
-  font-size: 14px;
-  color: #888;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19.2px;
+  color: #83858a;
 }
 
 .itemPrice {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  color: green;
+  line-height: 25px;
 }
 
 /* Notes Section */
@@ -79,16 +86,20 @@
 }
 
 .notesLabel {
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19.2px;
   margin-bottom: 5px;
-  color: #333;
+  color: #83858a;
 }
 
 .notesInput {
   width: 98%;
   padding: 10px;
-  font-size: 14px;
-  border: 1px solid #202938;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 19.2px;
+  border: 1px solid #afafaf;
   border-radius: 50px;
   outline: none;
 }
@@ -109,6 +120,7 @@
   flex-direction: column;
   width: 30%;
   justify-self: center;
+  gap: 20px;
 }
 
 .delvieryInput {
@@ -139,22 +151,39 @@
 }
 
 .address p {
+  font-family: "Switzer", sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 18.2px;
   padding: 0;
   margin: 0;
-  font-size: 14px;
 }
 .hrLine {
   width: 100%;
-  border: 0.5px solid #202938;
+  margin: 0;
+  border: 0.5px solid #afafaf;
   border-radius: 50px;
 }
 
 .amountsContainer {
   display: flex;
   flex-direction: column;
+}
+.amountsContainer > div > p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 25.6px;
+}
+
+.totalAmountLabel {
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  line-height: 32px !important;
+}
+.totalAmount {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  line-height: 32px !important;
 }
 .payButton {
   text-align: center;
@@ -164,12 +193,15 @@
   border: none;
   border-radius: 20px;
   color: white;
-  font-family: poppins;
+  font-family: Poppins;
   font-size: 16px;
   font-weight: 600;
   line-height: 19.2px;
-  margin-top: 5px;
   cursor: pointer;
+}
+
+.chevron {
+  color: #fc8a06;
 }
 
 @media only screen and (max-width: 768px) {
@@ -177,11 +209,95 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    padding: 0;
   }
   .cartDetailsContainer {
     width: 90%;
+    padding: 10px;
   }
   .proceedContainer {
     width: 100%;
+  }
+  .notesInput {
+    width: 90%;
+  }
+
+  .itemTitle {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18.2px;
+  }
+
+  .backIcon {
+    background-color: #fc8a06;
+    color: white;
+    padding: 5px;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 22px;
+    justify-content: center;
+  }
+
+  .itemQuantity {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 19.2px;
+  }
+  .itemPrice {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18.2px;
+  }
+  .notesLabel {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 19.2px;
+  }
+  .notesInput {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 19.2px;
+  }
+  .deliveryLabel {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 23.4px;
+  }
+  .address {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18.2px;
+  }
+  .address p {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 19.2px;
+  }
+  .amountsContainer h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 23.4px;
+  }
+  .amountsContainer > div > p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22.4px;
+  }
+  .payButton {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18.2px;
+  }
+  .pageTitle {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 31.2px;
+  }
+
+  .navigationContainer {
+    padding-left: 10px;
   }
 }

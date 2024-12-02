@@ -19,8 +19,6 @@ function OrderSuccessful() {
       <div className="safeArea">
         {!isMobile && <OfferBanner />}
         <Header />
-        <ToastContainer />
-        {isMobile && <MobileCartMenu />}
       </div>
       <div className={`${styles.contentContainer}`}>
         <div
@@ -40,7 +38,11 @@ function OrderSuccessful() {
                 <p>{item.title}</p>
               </div>
             ))}
-            <button className="w-100" onClick={() => (window.location = "/")}>
+            <button
+              className="w-100"
+              style={{ cursor: "pointer" }}
+              onClick={() => (window.location = "/")}
+            >
               Back to Home
             </button>
           </div>

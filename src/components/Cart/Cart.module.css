@@ -66,6 +66,7 @@
   border-top-right-radius: 5px;
   position: sticky;
   top: 0; /* Keep the title sticky at the top of the cart */
+  z-index: 99999;
 }
 
 .cartItemsList {

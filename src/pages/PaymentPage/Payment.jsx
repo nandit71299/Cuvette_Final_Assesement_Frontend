@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
 import styles from "./PaymentOptions.module.css";
 import Header from "../../components/Header/Header";
-import { MobileCartMenu, OfferBanner } from "../../components";
+import { Footer, MobileCartMenu, OfferBanner } from "../../components";
 import { toast, ToastContainer } from "react-toastify";
 import useIsMobile from "../../utils/isMobile";
 import { createOrder } from "../../utils/apiUtil"; // Ensure the createOrder function is imported
@@ -68,7 +68,6 @@ function PaymentOptions() {
       <div className="safeArea">
         {!isMobile && <OfferBanner />}
         <Header />
-        <ToastContainer />
         {/* {isMobile && <MobileCartMenu />} */}
       </div>
       {/* Title and Back Icon */}
@@ -94,7 +93,13 @@ function PaymentOptions() {
             >
               <div className={styles.optionIcon}>W</div>
               <div className={styles.optionDetails}>
-                <h3>Wallet</h3>
+                <h3
+                  className={
+                    selectedOption === "wallet" ? styles.selectedTitle : ""
+                  }
+                >
+                  Wallet
+                </h3>
                 {/* This is where we move the balance text */}
                 {selectedOption === "wallet" && (
                   <p className={styles.walletBalance}>
@@ -105,7 +110,7 @@ function PaymentOptions() {
               {/* Show the arrow icon instead of radio button when selected */}
               {selectedOption === "wallet" ? (
                 <i
-                  className="bi bi-chevron-right"
+                  className={`bi bi-chevron-right ${styles.chevron}`}
                   style={{ fontSize: "24px" }}
                 ></i>
               ) : (
@@ -134,13 +139,19 @@ function PaymentOptions() {
                   {option.label.charAt(0)}
                 </div>
                 <div className={styles.optionDetails}>
-                  <h3>{option.label}</h3>
+                  <h3
+                    className={
+                      selectedOption === option.id ? styles.selectedTitle : ""
+                    }
+                  >
+                    {option.label}
+                  </h3>
                   {option.subLabel && <p>{option.subLabel}</p>}
                 </div>
                 {/* Show the arrow icon instead of radio button when selected */}
                 {selectedOption === option.id ? (
                   <i
-                    className="bi bi-chevron-right"
+                    className={`bi bi-chevron-right ${styles.chevron}`}
                     style={{ fontSize: "24px" }}
                   ></i>
                 ) : (
@@ -162,9 +173,15 @@ function PaymentOptions() {
               }`}
               onClick={handleAddDebitCardClick} // Navigate when clicked
             >
-              <div className={styles.optionIcon}>+</div>
+              <div className={styles.addIcon}>+</div>
               <div className={styles.optionDetails}>
-                <h3>Add Debit Card</h3>
+                <h3
+                  className={
+                    selectedOption === "addCard" ? styles.selectedTitle : ""
+                  }
+                >
+                  Add Debit Card
+                </h3>
               </div>
               {/* Show the arrow icon instead of radio button when selected */}
               {selectedOption === "addCard" ? (
@@ -185,9 +202,11 @@ function PaymentOptions() {
 
           {/* Summary Box */}
           {!isMobile && (
-            <div className={styles.summaryBox}>
-              <h3>Amount to be paid</h3>
-              <p className={styles.amount}>₹240</p>
+            <div className={styles.summaryBoxContainer}>
+              <div className={styles.summaryBox}>
+                <h3>Amount to be paid</h3>
+                <p className={styles.amount}>₹240</p>
+              </div>
               <button className={styles.payButton} onClick={confirmOrder}>
                 Proceed Payment
               </button>
@@ -206,6 +225,7 @@ function PaymentOptions() {
           </button>
         </div>
       )}
+      {!isMobile && <Footer />}
     </div>
   );
 }

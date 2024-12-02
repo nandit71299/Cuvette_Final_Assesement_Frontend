@@ -164,7 +164,6 @@ function RestrauntPage() {
           {isMobile && <MobileCartMenu />}
         </div>
         <ResInfo data={data} assets={assets} />
-        <ToastContainer />
       </div>
 
       {!isMobile && (
@@ -284,6 +283,7 @@ function RestrauntPage() {
         <PopularRestaurants title="Similiar Restraunts" />
       </div>
       <Footer />
+
     </div>
   );
 }

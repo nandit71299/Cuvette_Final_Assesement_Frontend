@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import styles from "./MobileCartMenu.module.css";
 import data from "../../data/data";
 import Cart from "../Cart/Cart";
+
 function MobileCartMenu() {
   const [displayCart, setDisplayCart] = useState(false);
+
   const handleCartClick = () => {
     setDisplayCart(!displayCart);
   };
+
   const cartStyles = {
     width: "90%",
   };
+
   return (
     <div
       className={`${styles.mainContainer} flex-container flex-column gap-05`}
@@ -49,6 +53,7 @@ function MobileCartMenu() {
         <img src={data.pinIcon} alt="" className={styles.pinIcon} />
         <p className={`${styles.userAddress}`}>User Address</p>
       </div>
+
       <div
         className={styles.cart}
         style={{ display: displayCart ? "block" : "none" }}

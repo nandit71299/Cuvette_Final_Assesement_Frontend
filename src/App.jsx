@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styles from "./App.module.css";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css"; // Import the default toast styles
 import { Provider, useSelector } from "react-redux";
 import store from "./redux/store";
 import PrivateRoute from "./components/PrivateRoute";
@@ -10,11 +10,11 @@ import ProductPage from "./pages/RestrauntPage/RestrauntPage";
 import ViewOrder from "./pages/ViewOrderPage/ViewOrder";
 import PaymentPage from "./pages/PaymentPage/Payment";
 import OrderSuccessful from "./pages/OrderSuccessful/OrderSuccessful";
+import { ToastContainer } from "react-toastify"; // Import ToastContainer
 
 function App() {
   return (
     <Provider store={store}>
-      {/* Use useSelector inside the provider to access the Redux state */}
       <Loader />
       <BrowserRouter>
         <Routes>
@@ -54,6 +54,8 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
+      {/* Global ToastContainer for toasts */}
+      <ToastContainer theme="dark" />
     </Provider>
   );
 }

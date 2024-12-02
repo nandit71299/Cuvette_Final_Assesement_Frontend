@@ -56,7 +56,6 @@ function PopularRestaurants(props) {
           })}
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 }

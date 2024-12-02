@@ -84,7 +84,6 @@ function LoginPage() {
         </aside>
       </main>
       <Footer />
-      <ToastContainer />
     </div>
   );
 }
