@@ -1,12 +1,16 @@
 import React from "react";
-import { useLocation } from "react-router-dom"; // Import useLocation
+import { useNavigate, useLocation, Link } from "react-router-dom"; // Import Link for Home
 import styles from "./Header.module.css";
 import useIsMobile from "../../utils/isMobile";
 import data from "../../data/data";
+import { useSelector } from "react-redux";
 
 function Header() {
   const location = useLocation(); // Get current location
   const isMobile = useIsMobile();
+  const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
   // Function to check if the current page is selected
   const isActive = (path) => {
     return location.pathname === path ? styles.active : ""; // Compare current path with the menu item
@@ -35,9 +39,11 @@ function Header() {
               <div
                 className={`${styles.menuItems} justify-content-center align-items-center`}
               >
-                <a href="/" className={`${styles.menuItem} ${isActive("/")}`}>
+                {/* Home link with React Router's Link */}
+                <Link to="/" className={`${styles.menuItem} ${isActive("/")}`}>
                   Home
-                </a>
+                </Link>
+                {/* Static links */}
                 <a
                   href="#"
                   className={`${styles.menuItem} ${isActive("/specialOffers")}`}
@@ -48,7 +54,7 @@ function Header() {
                   href="#"
                   className={`${styles.menuItem} ${isActive("/restraunt")}`}
                 >
-                  Restraunts
+                  Restaurants
                 </a>
                 <a
                   href="#"
@@ -66,8 +72,23 @@ function Header() {
                 src="https://www.figma.com/file/PwcM13xK4XBCiuX2M1iuOL/image/e9ac58674f3e800a3b628b034b504eed4fd0ea8b"
                 alt=""
                 style={{ margin: 0, height: "auto", width: "20%" }}
-              />{" "}
-              <p className={styles.userName}>Hey User</p>
+              />
+              {user?.name && (
+                <p
+                  className={styles.userName}
+                  onClick={() => navigate("/user-profile")}
+                >
+                  Hey {user.name}
+                </p>
+              )}
+              {!user?.name && (
+                <p
+                  className={styles.userName}
+                  onClick={() => navigate("/login")}
+                >
+                  Login/Signup
+                </p>
+              )}
             </button>
           </div>
         )}

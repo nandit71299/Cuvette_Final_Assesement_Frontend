@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styles from "./App.module.css";
-import LoginPage from "./pages/LoginPage/LoginPage";
+import LoginSignUpPage from "./pages/LoginSignUpPage/LoginSignUpPage";
 import "react-toastify/dist/ReactToastify.css"; // Import the default toast styles
 import { Provider, useSelector } from "react-redux";
 import store from "./redux/store";
@@ -18,15 +18,9 @@ function App() {
       <Loader />
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/"
-            element={
-              <PrivateRoute>
-                <HomePage />
-              </PrivateRoute>
-            }
-          />
+          <Route path="/login" element={<LoginSignUpPage />} />
+          <Route path="/signup" element={<LoginSignUpPage />} />
+          <Route path="/" element={<HomePage />} />
           <Route
             path="/restraunt"
             element={

@@ -30,6 +30,31 @@ export const login = async (data) => {
   }
 };
 
+export const register = async (data) => {
+  try {
+    const response = await axios.post(`${apiUrl}/users/signup`, data);
+
+    if (response.status === 200 && response.data.success) {
+      return response.data;
+    } else {
+      throw new Error(response.data.message);
+    }
+  } catch (error) {
+    if (error.response) {
+      const status = error.response.status;
+      const message = error.response.data.message || "An error occurred";
+      if (status === 409) {
+        return { success: false, message };
+      }
+      return { success: false, message };
+    }
+    return {
+      success: false,
+      message: error.message || "Network error, please try again later.",
+    };
+  }
+};
+
 // Token verification utility function
 export const verifyToken = async (token) => {
   try {

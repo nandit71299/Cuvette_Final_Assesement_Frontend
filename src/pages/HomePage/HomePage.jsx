@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Header,
   OfferBanner,
@@ -15,8 +15,32 @@ import SignUpBanner from "../../components/HomePage/SignUpBanner";
 import data from "../../data/data";
 import AboutUs from "../../components/HomePage/AboutUs";
 import Stats from "../../components/HomePage/Stats";
+import { verifyToken } from "../../utils/apiUtil";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/userSlice";
 function HomePage() {
   const isMobile = useIsMobile();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const verifyUserToken = async () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          const verification = await verifyToken(token);
+
+          if (verification.success) {
+            dispatch(setUser({ user: verification.user }));
+          }
+        } catch (error) {
+          console.error("Error verifying token:", error);
+        }
+      }
+    };
+
+    verifyUserToken();
+  }, [dispatch]); // Make sure to include dispatch in the dependency array
+
   return (
     <div
       className={` ${isMobile ? "gap-05" : "gap-1"} flex-container flex-column`}

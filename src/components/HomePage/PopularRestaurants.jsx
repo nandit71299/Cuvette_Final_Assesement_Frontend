@@ -9,7 +9,7 @@ function PopularRestaurants(props) {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const handleClick = (id) => {
-    window.location = `/restraunt?id=${id}`;
+    navigate(`/restraunt?id=${id}`);
   };
 
   // Fetch the data when the component mounts
