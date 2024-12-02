@@ -171,3 +171,17 @@
   margin-top: 5px;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 768px) {
+  .mainContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .cartDetailsContainer {
+    width: 90%;
+  }
+  .proceedContainer {
+    width: 100%;
+  }
+}

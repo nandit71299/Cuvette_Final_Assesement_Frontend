@@ -1,0 +1,215 @@
+/* Container Layout */
+.container {
+  padding: 20px;
+  background-color: #fff;
+  border-top: 1px solid gray;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.backIcon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Main Content */
+.mainContent {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  overflow-y: auto; /* Allow scroll when content exceeds the height */
+  padding-bottom: 80px; /* Space for the footer */
+}
+
+/* Payment Options Section */
+.paymentOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 70%;
+}
+
+.optionCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.optionCard:hover {
+  border-color: #fc8a06;
+}
+
+.selected {
+  border-color: #fc8a06;
+  background-color: #fffaf0;
+}
+
+.optionIcon {
+  font-size: 24px;
+  font-weight: 600;
+  color: #fc8a06;
+  background-color: #fffaf0;
+  padding: 10px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.optionDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.optionDetails h3 {
+  margin: 0;
+  font-size: 16px;
+  flex: 1;
+}
+
+.optionDetails p {
+  margin: 0;
+  font-size: 14px;
+  color: #888;
+}
+
+.radioButton {
+  display: none;
+}
+
+.optionCard .bi-arrow-right {
+  font-size: 24px;
+  color: #007bff;
+  margin-left: 10px;
+}
+
+.hrLine {
+  width: 100%;
+  margin-top: 10px;
+  border-top: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.walletBalance {
+  font-size: 14px;
+  color: #888;
+  margin-top: 5px;
+}
+
+/* Summary Box */
+.summaryBox {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  width: 30%;
+}
+
+.summaryBox h3 {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.amount {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.payButton {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #fc8a06;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.payButton:hover {
+  background-color: #ff9a30;
+}
+
+.radioButton {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* Mobile Footer Button Fixed */
+.mobileProceedContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background-color: white;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.mobileProceedContainer .payButton {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #fc8a06;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mobileProceedContainer .payButton:hover {
+  background-color: #ff9a30;
+}
+
+@media only screen and (max-width: 768px) {
+  /* Ensure that the main content is scrollable and the footer remains fixed */
+  .mainContent {
+    flex-direction: column; /* Stack items vertically */
+    height: calc(100vh - 80px); /* Full height minus space for the footer */
+    padding-bottom: 80px; /* Make sure content doesn't get hidden by footer */
+  }
+
+  .paymentOptions {
+    width: 100%;
+  }
+  .mobileProceedContainer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background-color: white;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+}

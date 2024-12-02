@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Cart.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart } from "../../redux/cartSlice"; // Now dispatching the thunk
-import { toast } from "react-toastify"; // If you want to show notifications
+import { removeFromCart } from "../../redux/cartSlice"; // Dispatching the thunk
+import { toast, ToastContainer } from "react-toastify"; // Notifications
 import useIsMobile from "../../utils/isMobile";
 import { Navigate } from "react-router-dom";
 
@@ -11,30 +11,44 @@ const Cart = (props) => {
   const cartItems = useSelector((state) => state.cart); // Accessing cart state from Redux
   const [redirectToCheckout, setRedirectToCheckout] = React.useState(false);
 
+  // Handle removing item from cart
   const handleRemoveFromCart = (itemId) => {
     dispatch(removeFromCart(itemId)); // Dispatch the thunk to remove item
   };
 
+  // Handle copying the cart URL
   const handleCopyLink = () => {
-    // Get the current URL
     const currentUrl = window.location.origin;
 
-    // Try to copy the URL to the clipboard
+    if (!cartItems.items || cartItems.items.length === 0) {
+      toast.error("No cart items to share");
+      return;
+    }
+
     navigator.clipboard
       .writeText(`${currentUrl}/view-order?cartId=${cartItems.cartId}`)
       .then(() => {
-        // Show success message (optional)
         toast.success("URL copied to clipboard");
       })
-      .catch((err) => {
+      .catch(() => {
         toast.error("Failed to copy the URL");
       });
   };
 
   const isMobile = useIsMobile();
 
+  // Redirect to checkout page when needed
   const handleCheckoutClick = () => {
-    // You can add any additional logic before redirecting, like saving cart data to local storage or performing validation
+    const minAmount = 20; // Minimum checkout amount
+    if (cartItems.total < minAmount) {
+      const remainingAmount = minAmount - cartItems.total;
+      toast.error(
+        `Minimum delivery is ₹20. You must spend ₹${remainingAmount.toFixed(
+          2
+        )} more to checkout!`
+      );
+      return;
+    }
     setRedirectToCheckout(true);
   };
 
@@ -76,10 +90,12 @@ const Cart = (props) => {
         <p>Share this cart with your friends</p>
         <button onClick={handleCopyLink}>Copy Link</button>
       </div>
+
       <div className={styles.cartTitle}>
         <i className="bi bi-basket2 bi-xxl" style={{ fontSize: "20px" }}></i>
         <h3>My Basket</h3>
       </div>
+
       <div
         className={styles.cartItemsList}
         style={{ backgroundColor: isMobile ? "white" : "" }}
@@ -121,62 +137,85 @@ const Cart = (props) => {
         ) : (
           <div className={styles.emptyCartContainer}>No items in the cart.</div>
         )}
-        <div className={styles.billingAmountsContainer}>
-          <div className={styles.billingItem}>
-            <h4>Subtotal:</h4>
-            <h3>₹{cartItems.subTotal}</h3>
-          </div>
-          <div className={styles.billingItem}>
-            <h4>Discounts:</h4>
-            <h3>₹0.00</h3>
-          </div>
-          <div className={styles.billingItem}>
-            <h4>Delivery Fee:</h4>
-            <h3>₹{cartItems.deliveryFee}</h3>
-          </div>{" "}
-          <hr className="w-100" />
-          <div className={styles.totalContainer}>
-            <h4>Total to pay</h4>
-            <h3>₹{cartItems.total}</h3>
-          </div>
-        </div>
-        {/* static elements */}
-        <div className="flex-container flex-column gap-05">
-          {/* freeItems */}
-          <div className={styles.chooseFreeItems}>
-            <h5>Choose your free items</h5>
-            <i className="bi bi-arrow-down-circle-fill"></i>
-          </div>{" "}
-          <div className={styles.applyCoupon}>
-            <h5>Choose your free items</h5>
-            <i className="bi bi-arrow-right-circle-fill"></i>
-          </div>
-        </div>
-        {/* delivery options */}
-        <div className="flex-container gap-05">
-          <div
-            className={`${styles.scooterDelivery} flex-container flex-column gap-05`}
-          >
-            <i className="bi bi-scooter"></i>
-            <h6>Delivery</h6>
-            <p>Starts at 17:50</p>
-          </div>
-          <hr />
-          <div
-            className={`${styles.shopCollection} flex-container flex-column gap-05`}
-          >
-            <i className="bi bi-shop"></i> <h6>Collection</h6>
-            <p>Starts at 16:50</p>
-          </div>
-        </div>
-        <div
-          className={styles.checkoutButtonContainer}
-          onClick={handleCheckoutClick}
-        >
-          <i className="bi bi-arrow-right-circle-fill"></i>
-          <button className={styles.checkoutButton}>Checkout</button>
-        </div>
+
+        {/* Render billing section only if there are items in the cart */}
+        {cartItems.items.length > 0 && (
+          <>
+            <div className={styles.billingAmountsContainer}>
+              <div className={styles.billingItem}>
+                <h4>Subtotal:</h4>
+                <h3>₹{cartItems.subTotal}</h3>
+              </div>
+              <div className={styles.billingItem}>
+                <h4>Discounts:</h4>
+                <h3>₹0.00</h3>
+              </div>
+              <div className={styles.billingItem}>
+                <h4>Delivery Fee:</h4>
+                <h3>₹{cartItems.deliveryFee}</h3>
+              </div>
+
+              <hr className="w-100" />
+
+              <div className={styles.totalContainer}>
+                <h4>Total to pay</h4>
+                <h3>₹{cartItems.total}</h3>
+              </div>
+            </div>
+
+            {/* Static Elements */}
+            <div className="flex-container flex-column gap-05">
+              <div className={styles.chooseFreeItems}>
+                <h5>Choose your free items</h5>
+                <i className="bi bi-arrow-down-circle-fill"></i>
+              </div>
+              <div className={styles.applyCoupon}>
+                <h5>Apply a coupon</h5>
+                <i className="bi bi-arrow-right-circle-fill"></i>
+              </div>
+            </div>
+
+            {/* Delivery Options */}
+            <div className="flex-container gap-05">
+              <div
+                className={`${styles.scooterDelivery} flex-container flex-column gap-05`}
+              >
+                <i className="bi bi-scooter"></i>
+                <h6>Delivery</h6>
+                <p>Starts at 17:50</p>
+              </div>
+              <hr />
+              <div
+                className={`${styles.shopCollection} flex-container flex-column gap-05`}
+              >
+                <i className="bi bi-shop"></i> <h6>Collection</h6>
+                <p>Starts at 16:50</p>
+              </div>
+            </div>
+
+            {/* Checkout Button */}
+            <div
+              className={`${styles.checkoutButtonContainer} ${
+                cartItems.total < 20 ? styles.disabled : ""
+              }`}
+              onClick={handleCheckoutClick}
+            >
+              <i className="bi bi-arrow-right-circle-fill"></i>
+              <button
+                className={`${styles.checkoutButton} ${
+                  cartItems.total < 20 ? styles.disabled : ""
+                }`}
+                disabled={cartItems.total < 20}
+              >
+                Checkout
+              </button>
+            </div>
+          </>
+        )}
       </div>
+
+      {/* Toast Notification Container */}
+      <ToastContainer />
     </div>
   );
 };

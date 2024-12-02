@@ -224,3 +224,24 @@ export const removeItemFromCartApi = async (token, itemId) => {
     };
   }
 };
+
+export const createOrder = async (data) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.post(`${apiUrl}/orders/create`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.data.success) {
+      return response.data;
+    } else {
+      throw new Error(response.data.error.message || "Error creating order");
+    }
+  } catch (error) {
+    return {
+      success: false,
+      message: error,
+    };
+  }
+};

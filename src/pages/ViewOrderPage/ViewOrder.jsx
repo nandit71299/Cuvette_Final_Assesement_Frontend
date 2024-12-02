@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Header, MobileCartMenu, OfferBanner } from "../../components";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { Footer, Header, MobileCartMenu, OfferBanner } from "../../components";
 import { toast, ToastContainer } from "react-toastify";
 import useIsMobile from "../../utils/isMobile";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,6 +15,9 @@ function ViewOrder() {
   const dispatch = useDispatch();
   const cartData = useSelector((state) => state.cart);
 
+  // Use navigate hook to navigate programmatically
+  const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(fetchCartData(cartId));
   }, [cartId, dispatch]);
@@ -26,8 +29,11 @@ function ViewOrder() {
   if (cartData.error) {
     return <div>Error: {cartData.error}</div>;
   }
+
   const handlePaymentClick = (event) => {
     event.preventDefault();
+    // Navigate to the /payment page
+    navigate("/payment");
   };
 
   return (
@@ -127,7 +133,13 @@ function ViewOrder() {
         </div>
         <div></div>
       </div>
-      <PopularRestaurants title="Similiar Restruants" />
+      {!isMobile && (
+        <div>
+          {" "}
+          <PopularRestaurants title="Similiar Restruants" />
+          <Footer />
+        </div>
+      )}
     </div>
   );
 }

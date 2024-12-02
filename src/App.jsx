@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import ProductPage from "./pages/RestrauntPage/RestrauntPage";
 import ViewOrder from "./pages/ViewOrderPage/ViewOrder";
 import PaymentPage from "./pages/PaymentPage/Payment";
+import OrderSuccessful from "./pages/OrderSuccessful/OrderSuccessful";
 
 function App() {
   return (
@@ -40,6 +41,14 @@ function App() {
             element={
               <PrivateRoute>
                 <PaymentPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/order-successful"
+            element={
+              <PrivateRoute>
+                <OrderSuccessful />
               </PrivateRoute>
             }
           />
