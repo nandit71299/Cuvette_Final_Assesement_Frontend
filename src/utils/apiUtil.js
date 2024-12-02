@@ -270,3 +270,101 @@ export const createOrder = async (data) => {
     };
   }
 };
+
+export const updateUser = async (user) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.put(
+      `${apiUrl}/users/update?id=${user.userId}`,
+      user,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (response.data.success) {
+      return response.data;
+    } else {
+      throw new Error(response.data.error.message || "Error updating user");
+    }
+  } catch (error) {
+    return {
+      success: false,
+      message: error,
+    };
+  }
+};
+
+export const addCard = async (cardData) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.post(
+      `${apiUrl}/users/${cardData.userId}/cards`,
+      cardData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.data.success) {
+      return response.data;
+    } else {
+      console.log(response);
+      throw new Error(response.data.error.message || "Error adding card");
+    }
+  } catch (error) {
+    return { success: false, message: error.message || "Error adding card" };
+  }
+};
+
+export const updateCard = async (cartData) => {
+  try {
+    const token = localStorage.getItem("token");
+    console.log(cartData);
+
+    const response = await axios.put(
+      `${apiUrl}/users/${cartData.userId}/cards/${cartData.cardId}/`,
+      cartData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.data.success) {
+      return response.data;
+    } else {
+      throw new Error(response.data.error.message || "Error updating cart");
+    }
+  } catch (error) {
+    return { success: false, message: error.message || "Error updating cart" };
+  }
+};
+
+export const deleteCard = async (cardData) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.delete(
+      `${apiUrl}/users/${cardData.userId}/cards/${cardData.cardId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.data.success) {
+      return response.data;
+    } else {
+      throw new Error(response.data.error.message || "Error deleting card");
+    }
+  } catch (error) {
+    return { success: false, message: error.message || "Error deleting card" };
+  }
+};

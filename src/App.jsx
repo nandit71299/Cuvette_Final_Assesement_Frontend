@@ -11,6 +11,7 @@ import ViewOrder from "./pages/ViewOrderPage/ViewOrder";
 import PaymentPage from "./pages/PaymentPage/Payment";
 import OrderSuccessful from "./pages/OrderSuccessful/OrderSuccessful";
 import { ToastContainer } from "react-toastify"; // Import ToastContainer
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 function App() {
   return (
@@ -43,6 +44,14 @@ function App() {
             element={
               <PrivateRoute>
                 <OrderSuccessful />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <ProfilePage />
               </PrivateRoute>
             }
           />

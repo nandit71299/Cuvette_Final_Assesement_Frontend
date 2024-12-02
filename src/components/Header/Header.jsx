@@ -76,7 +76,7 @@ function Header() {
               {user?.name && (
                 <p
                   className={styles.userName}
-                  onClick={() => navigate("/user-profile")}
+                  onClick={() => navigate("/profile")}
                 >
                   Hey {user.name}
                 </p>

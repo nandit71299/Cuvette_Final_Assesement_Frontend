@@ -7,6 +7,7 @@ const initialState = {
   country: null,
   addresses: [],
   cards: [],
+  phone: null,
 };
 
 const userSlice = createSlice({
@@ -21,6 +22,7 @@ const userSlice = createSlice({
       state.country = user.country;
       state.addresses = user.addresses || [];
       state.cards = user.cards || [];
+      state.phone = user.phone;
     },
     clearUser: (state) => {
       state.userId = null;
