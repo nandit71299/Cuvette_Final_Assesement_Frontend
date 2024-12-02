@@ -1,4 +1,4 @@
-const API_PORT = import.meta.env.VITE_API_PORT;
+const API_PORT = import.meta.env?.VITE_API_PORT || "";
 const API_URL = import.meta.env.VITE_API_URL;
 const apiUrl = `${API_URL}:${API_PORT}/api`;
 
