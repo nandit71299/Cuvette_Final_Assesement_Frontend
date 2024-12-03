@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Cart.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../../redux/cartSlice"; // Dispatching the thunk
@@ -9,7 +9,7 @@ import { Navigate } from "react-router-dom";
 const Cart = (props) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart); // Accessing cart state from Redux
-  const [redirectToCheckout, setRedirectToCheckout] = React.useState(false);
+  const [redirectToCheckout, setRedirectToCheckout] = useState(false);
 
   // Handle item removal
   const handleRemoveFromCart = (itemId) => {

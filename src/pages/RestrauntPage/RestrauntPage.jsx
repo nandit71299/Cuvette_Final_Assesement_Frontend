@@ -283,7 +283,6 @@ function RestrauntPage() {
         <PopularRestaurants title="Similiar Restraunts" />
       </div>
       <Footer />
-
     </div>
   );
 }

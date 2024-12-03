@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchCartData } from "../../redux/cartSlice";
 import styles from "./ViewOrder.module.css";
 import PopularRestaurants from "../../components/HomePage/PopularRestaurants";
+import { toast } from "react-toastify"; // Import toast
 
 function ViewOrder() {
   const [params] = useSearchParams();
@@ -13,9 +14,17 @@ function ViewOrder() {
   const isMobile = useIsMobile();
   const dispatch = useDispatch();
   const cartData = useSelector((state) => state.cart);
-
+  const user = useSelector((state) => state.user);
   // Use navigate hook to navigate programmatically
   const navigate = useNavigate();
+
+  // Filter the user's default address
+  const defaultAddress = user?.addresses?.find((address) => address.isDefault);
+
+  // Combine the address fields
+  const fullAddress = defaultAddress
+    ? `${defaultAddress.street}, ${defaultAddress.city}, ${defaultAddress.state}, ${defaultAddress.country}`
+    : "No default address available";
 
   useEffect(() => {
     dispatch(fetchCartData(cartId));
@@ -30,8 +39,12 @@ function ViewOrder() {
   }
 
   const handlePaymentClick = (event) => {
-    event.preventDefault();
-    // Navigate to the /payment page
+    // event.preventDefault();
+    if (!defaultAddress) {
+      console.log("No default address found"); // Debugging line
+      toast.error("Please select a default address");
+      return;
+    }
     navigate("/payment");
   };
 
@@ -54,7 +67,7 @@ function ViewOrder() {
           </h1>
         </div>
 
-        <div className={`${styles.mainContainer}   `}>
+        <div className={`${styles.mainContainer}`}>
           {/* Order Items */}
           <div className={`${styles.cartDetailsContainer} safeArea`}>
             {cartData.items.length === 0 ? (
@@ -86,7 +99,8 @@ function ViewOrder() {
               />
             </div>
           </div>
-          {/* proceedContent */}
+
+          {/* ProceedContent */}
           <div className={`${styles.proceedContainer} safeArea`}>
             {isMobile && (
               <h2 className={styles.deliveryLabel}>Delivery Address</h2>
@@ -95,10 +109,13 @@ function ViewOrder() {
               <div className={styles.pinIcon}>
                 <i className="bi bi-geo-alt-fill"></i>
               </div>
-              <div className={styles.address}>
+              <div
+                className={styles.address}
+                onClick={() => navigate("/addresses")}
+              >
                 <p>Delivery Address</p>
                 <p style={{ fontWeight: "400", fontSize: "12px" }}>
-                  45, Green Street, Sector 12...
+                  {fullAddress}
                 </p>
               </div>
               <div>
@@ -134,10 +151,10 @@ function ViewOrder() {
           </div>
           <div></div>
         </div>
+
         {!isMobile && (
           <div>
-            {" "}
-            <PopularRestaurants title="Similiar Restruants" />
+            <PopularRestaurants title="Similar Restaurants" />
             <Footer />
           </div>
         )}

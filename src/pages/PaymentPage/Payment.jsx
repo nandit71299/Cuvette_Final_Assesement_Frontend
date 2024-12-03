@@ -205,7 +205,7 @@ function PaymentOptions() {
             <div className={styles.summaryBoxContainer}>
               <div className={styles.summaryBox}>
                 <h3>Amount to be paid</h3>
-                <p className={styles.amount}>₹240</p>
+                <p className={styles.amount}>₹{cartData.total}</p>
               </div>
               <button className={styles.payButton} onClick={confirmOrder}>
                 Proceed Payment

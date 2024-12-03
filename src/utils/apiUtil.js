@@ -291,7 +291,7 @@ export const updateUser = async (user) => {
   } catch (error) {
     return {
       success: false,
-      message: error,
+      message: error.response.data.message,
     };
   }
 };
@@ -321,14 +321,13 @@ export const addCard = async (cardData) => {
   }
 };
 
-export const updateCard = async (cartData) => {
+export const updateCard = async (cardData) => {
   try {
     const token = localStorage.getItem("token");
-    console.log(cartData);
 
     const response = await axios.put(
-      `${apiUrl}/users/${cartData.userId}/cards/${cartData.cardId}/`,
-      cartData,
+      `${apiUrl}/users/${cardData.userId}/cards/${cardData.cardId}/`,
+      cardData,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -366,5 +365,83 @@ export const deleteCard = async (cardData) => {
     }
   } catch (error) {
     return { success: false, message: error.message || "Error deleting card" };
+  }
+};
+
+export const addAddress = async (addressData) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.post(
+      `${apiUrl}/users/${addressData.userId}/addresses`,
+      addressData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.data.success) {
+      return response.data;
+    } else {
+      console.log(response);
+      throw new Error(response.data.error.message || "Error adding address");
+    }
+  } catch (error) {
+    return { success: false, message: error.message || "Error adding address" };
+  }
+};
+
+export const updateAddress = async (addressData) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.put(
+      `${apiUrl}/users/${addressData.userId}/addresses/${addressData.addressId}`,
+      addressData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.data.success) {
+      return response.data;
+    } else {
+      throw new Error(response.data.error.message || "Error updating address");
+    }
+  } catch (error) {
+    return {
+      success: false,
+      message: error.message || "Error updating address",
+    };
+  }
+};
+
+export const deleteAddress = async (addressData) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.delete(
+      `${apiUrl}/users/${addressData.userId}/addresses/${addressData.addressId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.data.success) {
+      return response.data;
+    } else {
+      throw new Error(response.data.error.message || "Error deleting address");
+    }
+  } catch (error) {
+    return {
+      success: false,
+      message: error.message || "Error deleting address",
+    };
   }
 };

@@ -3,6 +3,9 @@ import styles from "./Footer.module.css";
 import FancyInput from "../UiComponents/FancyInput";
 
 function Footer() {
+  const API_PORT = import.meta.env?.VITE_API_PORT || "";
+  const API_URL = import.meta.env.VITE_API_URL;
+  const apiUrl = `${API_URL}:${API_PORT}/api`;
   const inputStyles = {
     width: "100%",
     padding: "20px",
@@ -30,7 +33,7 @@ function Footer() {
     <div className={styles.footerContainer}>
       {/* <div style={{ display: "flex", flexWrap: "wrap" }}> */}
       <div className={styles.logoContainer}>
-        <img src="https://s3-alpha-sig.figma.com/img/c323/e614/5fe44fe9aa4ff0011347ab73c5d6358d?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=oy4PEg3q-kV82AfbHmkKfKm418UHbAjR61Rh3mH9p~RsoHIyBRTZxLyssrOOFQLEQHjQqfqxbA2eZtDbhKtmimbaDFIGeN3MknNaVKjvOgsm60CIDgtChvY6F5SNa~PfcDwzNvhhzUuBoST1BzcRa2qCuGe8SJ7mY~YEhrHFLx9l0ZV4ftOxy9bgo~XZXT2dOCg~SCh3OSZdUSWUo0rruD9qdJgGiwKbgBAo8hNHb3VBecsCUDVuIWTNZM--mDa5KRHxiEH2yX6ZiZ0AUKNX9m6PHFiQIW6XRnfu2~2aopdGjp3LvlXUgQREC0hCrt79koNEsHjJCf82XaGCY0Uobw__" />
+        <img src={`${apiUrl}/general/images/logo.jpg`} />
         <div className={styles.downloadImagesContainer}>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/640px-Download_on_the_App_Store_Badge.svg.png"

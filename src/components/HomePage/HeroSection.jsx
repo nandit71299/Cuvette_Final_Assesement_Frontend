@@ -7,6 +7,10 @@ import useIsMobile from "../../utils/isMobile";
 function HeroSection() {
   const isMobile = useIsMobile();
 
+  const API_PORT = import.meta.env?.VITE_API_PORT || "";
+  const API_URL = import.meta.env.VITE_API_URL;
+  const apiUrl = `${API_URL}:${API_PORT}/api`;
+
   const buttonStyles = {
     right: isMobile ? "0px" : "100px", // Add any other styles you want here
     width: isMobile ? "30%" : "40%",
@@ -37,14 +41,14 @@ function HeroSection() {
         </div>
         <div className={styles.modelImagesContainer}>
           <img
-            src={data.heroSectionModelOne}
+            src={`${apiUrl}/general/images/heroSectionModelOne.png`}
             alt=""
             className={styles.heroSectionModelOne}
           />
         </div>
         <div className={styles.modelImagesContainer}>
           <img
-            src={data.heroSectionModelTwo}
+            src={`${apiUrl}/general/images/heroSectionModelTwo.png`}
             alt=""
             className={styles.heroSectionModelTwo}
           />
@@ -54,7 +58,7 @@ function HeroSection() {
           <div>
             <img
               className={styles.notificationOne}
-              src="https://www.figma.com/file/PwcM13xK4XBCiuX2M1iuOL/image/614e7390dc7395cdd7f81c75ee8b35de8e061979"
+              src={`${apiUrl}/general/images/notificationOne.png`}
               alt=""
             />
             <h1 className={styles.notificationCount1}>1</h1>
@@ -64,7 +68,7 @@ function HeroSection() {
           <div>
             <img
               className={styles.notificationTwo}
-              src="https://s3-alpha-sig.figma.com/img/614e/7390/dc7395cdd7f81c75ee8b35de8e061979?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qKe26NizLW6cVViPupu7oK5WbL6tzBDfM3I0uJaNaCeA7P-ayiLn-YBJbPNVvU7IBJeSiTR~cpbUmtibb3BWwTyco1zO2vmHA7smvqbegaR1qHXBOIXxNXEGr3hWfO9VPyWsPsTqY99q3EH2CD6Q0uQKQP1JENTWVkEAsMMBXdtJGFl6~oL4SISBbSFG24IBzGDAWZziFjOzUN8wTP5XLAErfcO3i2gtKV5wcOyHsKLTB2HI399ughKhZSxkllsMTHu0Ew4yMX2pJQ99eQ8ur6yFjixG0AtEN6eNueeLvqJiHS2x77gR3M~ykt8KaLXRCU9etGIkY8YoGS6BNUvs8Q__"
+              src={`${apiUrl}/general/images/notificationTwo.png`}
               alt=""
             />
             <h1 className={styles.notificationCount2}>2</h1>
@@ -74,7 +78,7 @@ function HeroSection() {
           <div>
             <img
               className={styles.notificationThree}
-              src="https://s3-alpha-sig.figma.com/img/614e/7390/dc7395cdd7f81c75ee8b35de8e061979?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qKe26NizLW6cVViPupu7oK5WbL6tzBDfM3I0uJaNaCeA7P-ayiLn-YBJbPNVvU7IBJeSiTR~cpbUmtibb3BWwTyco1zO2vmHA7smvqbegaR1qHXBOIXxNXEGr3hWfO9VPyWsPsTqY99q3EH2CD6Q0uQKQP1JENTWVkEAsMMBXdtJGFl6~oL4SISBbSFG24IBzGDAWZziFjOzUN8wTP5XLAErfcO3i2gtKV5wcOyHsKLTB2HI399ughKhZSxkllsMTHu0Ew4yMX2pJQ99eQ8ur6yFjixG0AtEN6eNueeLvqJiHS2x77gR3M~ykt8KaLXRCU9etGIkY8YoGS6BNUvs8Q__"
+              src={`${apiUrl}/general/images/notificationThree.png`}
               alt=""
             />
             <h1 className={styles.notificationCount3}>3</h1>

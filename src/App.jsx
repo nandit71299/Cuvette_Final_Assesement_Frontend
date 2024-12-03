@@ -12,6 +12,7 @@ import PaymentPage from "./pages/PaymentPage/Payment";
 import OrderSuccessful from "./pages/OrderSuccessful/OrderSuccessful";
 import { ToastContainer } from "react-toastify"; // Import ToastContainer
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import AddressBook from "./pages/AddressBook/AddressBook";
 
 function App() {
   return (
@@ -52,6 +53,14 @@ function App() {
             element={
               <PrivateRoute>
                 <ProfilePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/addresses"
+            element={
+              <PrivateRoute>
+                <AddressBook />
               </PrivateRoute>
             }
           />

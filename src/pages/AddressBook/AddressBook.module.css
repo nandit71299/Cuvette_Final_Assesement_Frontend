@@ -1,0 +1,114 @@
+.container {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.header i {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.header h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.addressGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.addCard {
+  border: 2px dashed #afafaf;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.addCard:hover {
+  background-color: #fff7e6;
+}
+
+.addIcon {
+  font-size: 40px;
+  color: #f0a500;
+  font-weight: bold;
+}
+
+.addCard p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #f0a500;
+}
+
+.addressCard {
+  border: 1px solid #afafaf;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.addressHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addressHeader h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.defaultBadge {
+  background-color: #f0a500;
+  color: white;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+.addressLine {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.phoneNumber {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.actions {
+  font-size: 14px;
+  color: #f0a500;
+  display: flex;
+  gap: 10px;
+}
+
+.actions .edit,
+.actions .remove {
+  cursor: pointer;
+}
+
+.actions .edit:hover {
+  text-decoration: underline;
+}
+
+.actions .remove:hover {
+  text-decoration: underline;
+}

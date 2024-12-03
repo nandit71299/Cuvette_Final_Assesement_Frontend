@@ -1,3 +1,7 @@
+const API_PORT = import.meta.env?.VITE_API_PORT || "";
+const API_URL = import.meta.env.VITE_API_URL;
+const apiUrl = `${API_URL}:${API_PORT}/api`;
+
 const data = {
   heroSectionModelOne:
     "https://s3-alpha-sig.figma.com/img/69c1/9ac3/5494e7ff1cfc729f9a79cc9dfd357f02?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cZvLzc7M1ooa9yViREbtl9YlE4v5CkyayGJefsMs8GnQKl0syh5Kx~EK3k~Q8lWQpDUd3ngSd77wsQYrEmNCl2wud8pOrkFOVLdMoh6IDNfP6cXa1gIwEzZ0UXm0yyWpM8MCouGvRe83aaBzgiOoReSSNh3fYueJRyx0GzvnaRRc0n6k9NDMlXAoBXp63Bzgmmk3b78NDcAt5nQ1ehok6hYKSSO3k~7FhBIaBuJmFkEzWBzAQy0l1vgIjMKDgjO-McVz6lwTE17SI8C2Qc7ViY8uC9Lw4LnmGq61KTzLy5Z97E8GDU9JpkBHI00D96y3vxSfQcTppDMT2e6YX8KVUw__",
@@ -48,8 +52,7 @@ const dealsData = [
         name: "Vegan",
         restraunt: {
           name: "Chef Burgers London",
-          image:
-            "https://www.figma.com/file/PwcM13xK4XBCiuX2M1iuOL/image/be11353a02f4b1476ff7565a60acdccf6f4f0dce",
+          image: `${apiUrl}/deals/images/ChefBurgersLondon.jpg`,
           offer: "-40%",
         },
       },
@@ -58,8 +61,7 @@ const dealsData = [
         name: "Vegan",
         restraunt: {
           name: "Grand Ai Cafe London",
-          image:
-            "https://www.figma.com/file/PwcM13xK4XBCiuX2M1iuOL/image/38d1893b2f2a0b559a983df1cb475967a19332bf",
+          image: `${apiUrl}/deals/images/GrandAiCafeLondon.png`,
           offer: "-20%",
         },
       },
@@ -68,8 +70,7 @@ const dealsData = [
         name: "Vegan",
         restraunt: {
           name: "Butterbrot Café London",
-          image:
-            "https://www.figma.com/file/PwcM13xK4XBCiuX2M1iuOL/image/be11353a02f4b1476ff7565a60acdccf6f4f0dce",
+          image: `${apiUrl}/deals/images/ButterbrotCafeLondon.jpg`,
           offer: "-17%",
         },
       },
@@ -84,8 +85,7 @@ const dealsData = [
         name: "Shushi",
         restraunt: {
           name: "Sushi World",
-          image:
-            "https://media.istockphoto.com/id/1053854126/photo/all-you-can-eat-sushi.jpg?s=612x612&w=0&k=20&c=qqPJBYcxR0fgmzIFj_k2V6Mbo12hBBCucs1i5HcGYA0=",
+          image: `${apiUrl}/deals/images/SushiWorld.jpg`,
           offer: "-25%",
         },
       },
@@ -94,8 +94,7 @@ const dealsData = [
         name: "Shushi",
         restraunt: {
           name: "Tokyo Sushi Bar",
-          image:
-            "https://t4.ftcdn.net/jpg/01/35/23/71/360_F_135237184_vZnNVRuaHQZclXjxJ7ftEa3IyerhDF2y.jpg",
+          image: `${apiUrl}/deals/images/TokyoSushiBar.jpg`,
           offer: "-15%",
         },
       },
@@ -104,8 +103,7 @@ const dealsData = [
         name: "Shushi",
         restraunt: {
           name: "Sushi Hub",
-          image:
-            "https://www.justonecookbook.com/wp-content/uploads/2020/01/Sushi-Rolls-Maki-Sushi-%E2%80%93-Hosomaki-1106-II.jpg",
+          image: `${apiUrl}/deals/images/SushiHub.jpg`,
           offer: "-10%",
         },
       },
@@ -120,8 +118,7 @@ const dealsData = [
         name: "Pizza & Fast Food",
         restraunt: {
           name: "Pizza Express",
-          image:
-            "https://media.istockphoto.com/id/1442417585/photo/person-getting-a-piece-of-cheesy-pepperoni-pizza.jpg?s=612x612&w=0&k=20&c=k60TjxKIOIxJpd4F4yLMVjsniB4W1BpEV4Mi_nb4uJU=",
+          image: `${apiUrl}/deals/images/PizzaExpress.jpg`,
           offer: "-35%",
         },
       },
@@ -130,8 +127,7 @@ const dealsData = [
         name: "Pizza & Fast Food",
         restraunt: {
           name: "Papa John’s Pizza",
-          image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRw8gEzoh8wrAviIrSYZRxUp8KgSK-zSGZb96CFaFYIX0aAPcRbqzPhTAxJpP4u4ISk7u0&usqp=CAU",
+          image: `${apiUrl}/deals/images/PapaJohnsPizza.jpg`,
           offer: "-30%",
         },
       },
@@ -140,8 +136,7 @@ const dealsData = [
         name: "Pizza & Fast Food",
         restraunt: {
           name: "Domino’s Pizza",
-          image:
-            "https://images.unsplash.com/photo-1513104890138-7c749659a591?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D",
+          image: `${apiUrl}/deals/images/DominosPizza.jpg`,
           offer: "-25%",
         },
       },
@@ -156,7 +151,7 @@ const dealsData = [
         name: "Others",
         restraunt: {
           name: "The Burger Joint",
-          image: "https://assets.unileversolutions.com/v1/99096436.jpg",
+          image: `${apiUrl}/deals/images/TheBurgerJoint.jpg`,
           offer: "-40%",
         },
       },
@@ -165,8 +160,7 @@ const dealsData = [
         name: "Others",
         restraunt: {
           name: "The Salad Shop",
-          image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyRHtHr_SFiwM_RucVLhOKvbej2mmpKK_ugw&s",
+          image: `${apiUrl}/deals/images/TheSaladShop.jpg`,
           offer: "-20%",
         },
       },
@@ -175,8 +169,7 @@ const dealsData = [
         name: "Others",
         restraunt: {
           name: "Snack Shack",
-          image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSws2zUT2_CJtW1UZZkIt8iu6yRgPmkW8pl_Q&s",
+          image: `${apiUrl}/deals/images/SnackShack.jpg`,
           offer: "-15%",
         },
       },
@@ -188,44 +181,38 @@ const categoriesData = [
   {
     id: 1,
     name: "Burgers and Fast Food",
-    image:
-      "https://www.figma.com/file/PwcM13xK4XBCiuX2M1iuOL/image/f273401861db130d47525cdbcf113bad91763c94",
+    image: `${apiUrl}/categories/images/BurgersAndFastFood.jpg`,
     noOfRestraunts: 21,
   },
   {
     id: 2,
     name: "Salads",
-    image:
-      "https://www.figma.com/file/PwcM13xK4XBCiuX2M1iuOL/image/773c61960d856bd6b70a825ca8cdb6eee4b81688",
+    image: `${apiUrl}/categories/images/Salads.jpg`,
     noOfRestraunts: 32,
   },
   {
     id: 3,
     name: "Pasta's and Casual",
-    image:
-      "https://s3-alpha-sig.figma.com/img/53e9/8474/80ccba9eb11af5abd3be5a6b914def0d?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ObyAmqjPctlkmpftiIOGUgrGfQ68s~fOCXpAEu6cKdNFtzKOXcBk-TONCIrhknDkQUgpti0XrwM~d7YdtfLLEDvRTyK0VWTihudKdoMK6oQSzEpzmEaqdlNz7HklhNSNLxfRB54BhnssOTCY2LPkjGmQhdgC8FwzJmAOhGWUNJ2rh2ubpjUNAaXBRs8YfSTSzGQOJNpq4xYdzIIqDYFckpJePdZ3xPbVAveaI-pFOsDniX5RuT8XbfJRyhNru2W-gwu2ULtTTvVE0BDi0TUQwlqpeRm0J27vm3STvQLdHYwnIhIUqELx6lHOUrCXVkHZexYTutLlD26~O745HqPpfQ__",
+    image: `${apiUrl}/categories/images/PastaAndCasual.png`,
     noOfRestraunts: 4,
   },
   {
     id: 4,
     name: "Pizza",
-    image:
-      "https://s3-alpha-sig.figma.com/img/5c9c/3c0f/bebb21d6d7bd08fb3850ede5c9eb9d9e?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=LFPUTGjaCWLhWVnrUDyhohwlVQvd1lFqRxQU8q3otvV24mKFLpgAooeRAkR6D0zDc~~8X2aUnysHZIjDJs3wLhpPEiRRhtAqcWU4fnos3AsfM3Mi~5cv260HaCAQuYXcijEqULe-vvEsyZaEGRb2nwLSoviP7SYPria4Fenw3w8JKEqyk1S3rgBN-8znvhwMd~yYlruTpj0k~qJHtOEtJ6OLT0dd~y3o5OLH3l59okS4jsgxZaK8EI~zv-ftLX5CPfU5Nk5U2Bw2D6zVifKK9B6rYKdxBx6xGAcRBcbm8F-g5bpa4mQ-z6N4MtwRjUQsPLYvFJluJV6-~pvSsVhjXQ__",
+    image: `${apiUrl}/categories/images/Pizza.png`,
     noOfRestraunts: 32,
   },
 
   {
     id: 5,
     name: "Breakfast",
-    image:
-      "https://s3-alpha-sig.figma.com/img/a724/61e4/3ce636c9a873a6a923e0ea5532729119?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=AFUjYi94tyj~ta2bnm6V99Y63oxG2rtVEP9rlbt5XIxGcRuHEasJJzttFSHz2V8TYEXTSwR01VYkHSSVfpgYNjFN0KFUNETtTFiAuqYaIrDj3almFKXO3bGhm07bnMpYwtDtzWcvZteDXlBsg9UxHBHmg2gYfhTWG-R~4Zus73B-z53Yy7dTTigMSneOtAcbfIFxk8kYfvNYQmlsvhr1SrFeDc0NGs6HpHSFoxj7Lboq8sW6RB7xqXx6YwoXyEHFz2EeOlXmTfpji4HYRrPq8v8ih0llvZWdI~fVtR9tYJF1V90EQXOUnguz~yZdMH1DvGGVJ3rwB-eHyawSziVZGg__",
+    image: `${apiUrl}/categories/images/Breakfast.png`,
     noOfRestraunts: 4,
   },
   {
     id: 6,
     name: "Soups",
-    image:
-      "https://s3-alpha-sig.figma.com/img/1eb7/4c10/99f1cab96bf53e18d686012e3aece6c7?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=n5rNx88ZScv7M5cA7tf2WgAzXonAu7eaYwbP~mBsKPvkWDB2JO8bS44FndJ5HKLzTLBnjj9rwIcgJt1vx1As-xisjHaSFbABLwAMiXc82XxbCFnRzZaDYwnXdB3G4hQ1khGJ~3mheG~QYPWy3v5vmMYYYCYwa1ZDQTAN2BGp46gNj~nbZO5K8Qpl-BGLJ-WPYI-xSk1tk6JWV-xnXTQsKWGEN4dp0wZteOTIEEAmdqZrtUah8ioL2~nJBD4DpgD2rfWdvW3u-ofzK3U02sOXCcEoJDlhOKXAsfEB6QIZu8u9DccXodZVMBxHwZRdU56O0zTJPLtTzStsZ3kiA3xPbw__",
+    image: `${apiUrl}/categories/images/Soups.png`,
     noOfRestraunts: 32,
   },
 ];

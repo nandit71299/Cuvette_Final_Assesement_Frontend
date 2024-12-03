@@ -5,6 +5,11 @@ import data from "../../data/data";
 
 function AboutUs() {
   const isMobile = useIsMobile();
+
+  const API_PORT = import.meta.env?.VITE_API_PORT || "";
+  const API_URL = import.meta.env.VITE_API_URL;
+  const apiUrl = `${API_URL}:${API_PORT}/api`;
+
   return (
     <div className={styles.aboutUsMainContainer}>
       <div className={styles.headerContainer}>
@@ -49,21 +54,22 @@ function AboutUs() {
           <div className={`${styles.cardsContainer} `}>
             <div className={`${styles.cards}`}>
               <h6 className={styles.cardTitle}>Track Progress</h6>
-              <img src={data.orderFood} alt="" />
+              <img src={`${apiUrl}/general/images/orderFood.jpg`} alt="" />
               <p className={styles.cardMessage}>
                 Place order through our website or Mobile app
               </p>
             </div>
             <div className={`${styles.cards}`}>
               <h6 className={styles.cardTitle}>Track Progress</h6>
-              <img src={data.food} alt="" />
+              <img src={`${apiUrl}/general/images/food.jpg`} alt="" />
               <p className={styles.cardMessage}>
                 Your can track your order status with delivery time
               </p>
             </div>
             <div className={`${styles.cards}`}>
               <h6 className={styles.cardTitle}>Track Progress</h6>
-              <img src={data.order} alt="" />
+              <img src={`${apiUrl}/general/images/order.jpg`} alt="" />
+
               <p className={styles.cardMessage}>
                 Receive your order at a lighting fast speed!
               </p>

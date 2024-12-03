@@ -12,6 +12,7 @@ function PopularRestaurants(props) {
     navigate(`/restraunt?id=${id}`);
   };
 
+
   // Fetch the data when the component mounts
   useEffect(() => {
     getAllRestraunts(token)

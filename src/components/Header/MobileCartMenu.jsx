@@ -4,6 +4,10 @@ import data from "../../data/data";
 import Cart from "../Cart/Cart";
 
 function MobileCartMenu() {
+  const API_PORT = import.meta.env?.VITE_API_PORT || "";
+  const API_URL = import.meta.env.VITE_API_URL;
+  const apiUrl = `${API_URL}:${API_PORT}/api`;
+
   const [displayCart, setDisplayCart] = useState(false);
 
   const handleCartClick = () => {
@@ -21,7 +25,7 @@ function MobileCartMenu() {
       <div className="flex-container justify-content-between">
         <div className={styles.userInfo}>
           <img
-            src={data.userAvatar}
+            src={`${apiUrl}/general/images/userAvatar.jpeg`}
             alt=""
             style={{
               margin: 0,
@@ -34,7 +38,7 @@ function MobileCartMenu() {
         </div>
         <div className={styles.cartInfo} onClick={handleCartClick}>
           <img
-            src={data.cartIcon}
+            src={`${apiUrl}/general/images/cartIcon.jpg`}
             alt=""
             style={{
               margin: 0,
@@ -50,7 +54,11 @@ function MobileCartMenu() {
         style={{ maxHeight: "20px", marginBottom: "10px" }}
         className="flex-container justify-content-end align-items-center"
       >
-        <img src={data.pinIcon} alt="" className={styles.pinIcon} />
+        <img
+          src={`${apiUrl}/general/images/pinIcon.png`}
+          alt=""
+          className={styles.pinIcon}
+        />
         <p className={`${styles.userAddress}`}>User Address</p>
       </div>
 

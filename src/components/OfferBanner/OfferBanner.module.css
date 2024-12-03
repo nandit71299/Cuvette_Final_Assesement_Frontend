@@ -135,3 +135,21 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.cartModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000; /* Make sure it's on top */
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  height: 400px;
+}
+
+.cartDetailsContainer {
+  position: relative; /* Ensure the cart can be absolutely positioned within this container */
+}

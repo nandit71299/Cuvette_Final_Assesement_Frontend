@@ -6,6 +6,10 @@ import data from "../../data/data";
 import { useSelector } from "react-redux";
 
 function Header() {
+  const API_PORT = import.meta.env?.VITE_API_PORT || "";
+  const API_URL = import.meta.env.VITE_API_URL;
+  const apiUrl = `${API_URL}:${API_PORT}/api`;
+
   const location = useLocation(); // Get current location
   const isMobile = useIsMobile();
   const user = useSelector((state) => state.user);
@@ -31,7 +35,7 @@ function Header() {
         <img
           className={styles.headerLogo}
           style={{ padding: isMobile ? "10px" : "" }}
-          src="https://s3-alpha-sig.figma.com/img/c323/e614/5fe44fe9aa4ff0011347ab73c5d6358d?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=oy4PEg3q-kV82AfbHmkKfKm418UHbAjR61Rh3mH9p~RsoHIyBRTZxLyssrOOFQLEQHjQqfqxbA2eZtDbhKtmimbaDFIGeN3MknNaVKjvOgsm60CIDgtChvY6F5SNa~PfcDwzNvhhzUuBoST1BzcRa2qCuGe8SJ7mY~YEhrHFLx9l0ZV4ftOxy9bgo~XZXT2dOCg~SCh3OSZdUSWUo0rruD9qdJgGiwKbgBAo8hNHb3VBecsCUDVuIWTNZM--mDa5KRHxiEH2yX6ZiZ0AUKNX9m6PHFiQIW6XRnfu2~2aopdGjp3LvlXUgQREC0hCrt79koNEsHjJCf82XaGCY0Uobw__"
+          src={`${apiUrl}/general/images/logo.jpg`}
         />
         {!isMobile && (
           <div className={styles.menu}>
@@ -69,7 +73,7 @@ function Header() {
               className={`${styles.userInfo} flex-container textWhite rounded-5 justify-content-center align-items-center`}
             >
               <img
-                src="https://www.figma.com/file/PwcM13xK4XBCiuX2M1iuOL/image/e9ac58674f3e800a3b628b034b504eed4fd0ea8b"
+                src={`${apiUrl}/general/images/userAvatar2.png`}
                 alt=""
                 style={{ margin: 0, height: "auto", width: "20%" }}
               />
@@ -102,7 +106,7 @@ function Header() {
             }}
           >
             <img
-              src={data.hamburgerIcon}
+              src={`${apiUrl}/general/images/hamburgerIcon.jpg`}
               alt=""
               style={{
                 height: "auto",
