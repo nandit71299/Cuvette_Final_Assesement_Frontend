@@ -121,7 +121,7 @@ const CustomerReviews = () => {
                 <div className={styles.dateAndRating}>
                   <p className={styles.rating}>{"★".repeat(review.rating)}</p>
                   <div className="flex-container gap-05 align-items-center justify-content-end">
-                    <i class="bi bi-clock-history"></i>
+                    <i className="bi bi-clock-history"></i>
                     <p className={styles.date}>{review.date}</p>
                   </div>
                 </div>

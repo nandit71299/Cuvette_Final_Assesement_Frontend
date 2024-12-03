@@ -8,7 +8,12 @@ import {
   updateAddress,
   deleteAddress,
 } from "../../utils/apiUtil.js"; // Path to your API functions
-import { Header, MobileCartMenu, OfferBanner } from "../../components/index.js";
+import {
+  Footer,
+  Header,
+  MobileCartMenu,
+  OfferBanner,
+} from "../../components/index.js";
 import useIsMobile from "../../utils/isMobile.js";
 
 const AddressBook = () => {
@@ -92,75 +97,75 @@ const AddressBook = () => {
   const isMobile = useIsMobile();
 
   return (
-    <div className="safeArea">
-      {/* Header & OfferBanner */}
-      {!isMobile && <OfferBanner />}
-      <Header />
+    <div>
+      <div className="safeArea">
+        {/* Header & OfferBanner */}
+        {!isMobile && <OfferBanner />}
+        <Header />
 
-      {/* MobileCartMenu for mobile users */}
-      {isMobile && <MobileCartMenu />}
-
-      {/* Main Content */}
-      <div className={styles.container}>
-        <div className={styles.header}>
-          <i
-            className="bi bi-arrow-left"
-            onClick={() => window.history.back()}
-          ></i>
-          <h2>Your Addresses</h2>
-        </div>
-
-        {/* Address Grid */}
-        <div className={styles.addressGrid}>
-          {/* Add Address Card */}
-          <div className={styles.addCard} onClick={handleAddAddress}>
-            <div className={styles.addIcon}>+</div>
-            <p>Add Address</p>
+        {/* Main Content */}
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <i
+              className={`bi bi-arrow-left ${styles.backIcon}`}
+              onClick={() => window.history.back()}
+            ></i>
+            <h2>Your Addresses</h2>
           </div>
 
-          {/* Address Cards */}
-          {addresses.map((address, index) => (
-            <div key={address._id} className={styles.addressCard}>
-              <div className={styles.addressHeader}>
-                <h3>{address?.name}</h3>
-                {address?.isDefault && (
-                  <span className={styles.defaultBadge}>Default</span>
-                )}
-              </div>
-              <p className={styles.addressLine}>{address?.street}</p>
-              <p className={styles?.phoneNumber}>
-                Phone Number: {address.phone}
-              </p>
-              <div className={styles.actions}>
-                <span
-                  className={styles.edit}
-                  onClick={() => handleEditAddress(index)}
-                >
-                  Edit
-                </span>
-                {" | "}
-                <span
-                  className={styles.remove}
-                  onClick={() => handleRemoveAddress(address._id)}
-                >
-                  Remove
-                </span>
-              </div>
+          {/* Address Grid */}
+          <div className={styles.addressGrid}>
+            {/* Add Address Card */}
+            <div className={styles.addCard} onClick={handleAddAddress}>
+              <div className={styles.addIcon}>+</div>
+              <p>Add Address</p>
             </div>
-          ))}
-        </div>
 
-        {/* Add/Edit Address Modal */}
-        {modalOpen && (
-          <AddEditAddressModal
-            onClose={handleCloseModal}
-            onSave={handleSaveAddress}
-            address={currentAddress}
-            isEditing={isEditing}
-            addresses={addresses}
-          />
-        )}
+            {/* Address Cards */}
+            {addresses.map((address, index) => (
+              <div key={address._id} className={styles.addressCard}>
+                <div className={styles.addressHeader}>
+                  <h3>{address?.name}</h3>
+                  {address?.isDefault && (
+                    <span className={styles.defaultBadge}>Default</span>
+                  )}
+                </div>
+                <p className={styles.addressLine}>{address?.street}</p>
+                <p className={styles?.phoneNumber}>
+                  Phone Number: {address.phone}
+                </p>
+                <div className={styles.actions}>
+                  <span
+                    className={styles.edit}
+                    onClick={() => handleEditAddress(index)}
+                  >
+                    Edit
+                  </span>
+                  {" | "}
+                  <span
+                    className={styles.remove}
+                    onClick={() => handleRemoveAddress(address._id)}
+                  >
+                    Remove
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Add/Edit Address Modal */}
+          {modalOpen && (
+            <AddEditAddressModal
+              onClose={handleCloseModal}
+              onSave={handleSaveAddress}
+              address={currentAddress}
+              isEditing={isEditing}
+              addresses={addresses}
+            />
+          )}
+        </div>
       </div>
+      <Footer />
     </div>
   );
 };

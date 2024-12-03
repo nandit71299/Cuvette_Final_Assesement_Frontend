@@ -6,7 +6,7 @@ const AddEditAddressModal = ({ onClose, onSave, address, isEditing }) => {
     street: "",
     city: "",
     state: "",
-    country: "",
+    country: "India", // Default country set to India
     postalCode: "",
     phone: "",
     name: "", // Added name field
@@ -19,7 +19,7 @@ const AddEditAddressModal = ({ onClose, onSave, address, isEditing }) => {
         street: address.street || "",
         city: address.city || "",
         state: address.state || "",
-        country: address.country || "",
+        country: address.country || "India", // Default to India if not available
         postalCode: address.postalCode || "",
         phone: address.phone || "", // Pre-fill phone field for editing
         name: address.name || "", // Pre-fill name field for editing
@@ -37,14 +37,15 @@ const AddEditAddressModal = ({ onClose, onSave, address, isEditing }) => {
   };
 
   const handleSave = () => {
+    // Trim values before checking
     if (
-      !addressData.street ||
-      !addressData.city ||
-      !addressData.state ||
-      !addressData.country ||
-      !addressData.postalCode ||
-      !addressData.phone ||
-      !addressData.name // Ensure name is also filled
+      !addressData.street.trim() ||
+      !addressData.city.trim() ||
+      !addressData.state.trim() ||
+      !addressData.country.trim() ||
+      !addressData.postalCode.trim() ||
+      !addressData.phone.trim() ||
+      !addressData.name.trim() // Ensure name is also filled
     ) {
       alert("Please fill all fields before saving.");
       return;
@@ -58,12 +59,16 @@ const AddEditAddressModal = ({ onClose, onSave, address, isEditing }) => {
     <div className={styles.modal}>
       <div className={styles.modalContent}>
         <div className={styles.header}>
-          <h3>{isEditing ? "Edit Address" : "Add Address"}</h3>
+          <h3>
+            <i className="bi bi-geo-alt-fill"></i>
+            {isEditing ? " Edit Address" : " Add Address"}
+          </h3>
           <span className={styles.closeButton} onClick={onClose}>
             &times;
           </span>
         </div>
         <div className={styles.form}>
+          {/* Name Field */}
           <input
             type="text"
             name="name" // Added name field
@@ -72,23 +77,9 @@ const AddEditAddressModal = ({ onClose, onSave, address, isEditing }) => {
             placeholder="Name"
             className={styles.input}
           />
-          <input
-            type="text"
-            name="street"
-            value={addressData.street}
-            onChange={handleChange}
-            placeholder="Street Address"
-            className={styles.input}
-          />
+
           <div className={styles.row}>
-            <input
-              type="text"
-              name="city"
-              value={addressData.city}
-              onChange={handleChange}
-              placeholder="City"
-              className={styles.input}
-            />
+            {/* State, City, Postal Code Inputs */}
             <input
               type="text"
               name="state"
@@ -99,31 +90,57 @@ const AddEditAddressModal = ({ onClose, onSave, address, isEditing }) => {
             />
             <input
               type="text"
-              name="country"
-              value={addressData.country}
+              name="city"
+              value={addressData.city}
               onChange={handleChange}
-              placeholder="Country"
+              placeholder="City / District"
               className={styles.input}
             />
+
             <input
               type="text"
               name="postalCode"
               value={addressData.postalCode}
               onChange={handleChange}
-              placeholder="Postal Code"
-              className={styles.input}
-            />
-            <input
-              type="text"
-              name="phone"
-              value={addressData.phone}
-              onChange={handleChange}
-              placeholder="Phone Number"
+              placeholder="Pin Code"
               className={styles.input}
             />
           </div>
 
-          {/* Add checkbox for default address */}
+          {/* Hidden Country Field */}
+          <input
+            type="text"
+            name="country"
+            value={addressData.country}
+            onChange={handleChange}
+            placeholder="Country"
+            className={styles.input}
+            style={{ display: "none" }} // Hide it but ensure it is sent
+          />
+
+          {/* Phone Number Input */}
+          <input
+            type="text"
+            name="phone"
+            value={addressData.phone}
+            onChange={handleChange}
+            placeholder="Phone Number"
+            className={styles.input}
+          />
+
+          {/* Street Address (textarea) */}
+          <div className={styles.row}>
+            <textarea
+              rows={5}
+              name="street"
+              value={addressData.street}
+              onChange={handleChange}
+              placeholder="Enter Full Address"
+              className={styles.input}
+            />
+          </div>
+
+          {/* Checkbox for Default Address */}
           <div className={styles.checkboxWrapper}>
             <label>
               <input
@@ -136,6 +153,7 @@ const AddEditAddressModal = ({ onClose, onSave, address, isEditing }) => {
             </label>
           </div>
 
+          {/* Footer with Save Button */}
           <div className={styles.footer}>
             <button className={styles.saveButton} onClick={handleSave}>
               Save

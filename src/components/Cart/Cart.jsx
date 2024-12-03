@@ -115,7 +115,7 @@ const Cart = (props) => {
         style={{ backgroundColor: isMobile ? "white" : "" }}
       >
         {cartItems.items.map((item) => (
-          <div key={item.item_id}>
+          <div key={item._id}>
             {" "}
             {/* Ensure we're using item_id */}
             <div className={styles.cartItem}>

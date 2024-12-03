@@ -31,7 +31,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 150px;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -42,9 +41,16 @@
 }
 
 .addIcon {
-  font-size: 40px;
-  color: #f0a500;
-  font-weight: bold;
+  font-size: 30px;
+  color: #fc8a06;
+  background-color: #fc8a0620;
+  padding: 2px;
+  height: 40px;
+  width: 40px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 50%;
 }
 
 .addCard p {
@@ -74,8 +80,8 @@
 }
 
 .defaultBadge {
-  background-color: #f0a500;
-  color: white;
+  background-color: #ffedd8;
+  color: #fc8a06;
   font-size: 12px;
   padding: 2px 8px;
   border-radius: 5px;
@@ -111,4 +117,41 @@
 
 .actions .remove:hover {
   text-decoration: underline;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    border-top: 1px solid black;
+  }
+  .backIcon {
+    background-color: #fc8a06;
+    color: white;
+    padding: 5px;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 22px;
+    justify-content: center;
+  }
+
+  .addCard {
+    flex-direction: row;
+    gap: 10px;
+    height: 50px;
+  }
+  .addCard p {
+    margin: 0;
+  }
+  .addIcon {
+    font-size: 20px;
+    padding: 2px;
+    height: 30px;
+    width: 30px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 50%;
+  }
 }

@@ -1,3 +1,4 @@
+/* General modal styling */
 .modal {
   position: fixed;
   top: 0;
@@ -15,7 +16,6 @@
   background: white;
   border-radius: 10px;
   padding: 20px;
-  width: 500px;
   max-width: 90%;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -46,6 +46,7 @@
 .row {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap; /* Allow wrapping to the next line for smaller screens */
 }
 
 .input {
@@ -83,4 +84,33 @@
 
 .saveButton:hover {
   background: #e65c00;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column; /* Stack inputs vertically on mobile */
+  }
+
+  .input {
+    width: 90%; /* Make inputs take up the full width */
+    font-family: poppins;
+    margin-bottom: 5px; /* Space between inputs */
+  }
+
+  /* Make sure the modal content doesn't take up too much space on mobile */
+  .modalContent {
+    width: 80%;
+    padding: 15px;
+  }
+
+  /* Reduce the size of the save button for small screens */
+  .saveButton {
+    font-size: 12px;
+    padding: 8px 15px;
+    width: 100%;
+  }
+  .form {
+    gap: 5px;
+  }
 }

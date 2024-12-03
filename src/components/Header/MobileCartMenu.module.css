@@ -1,6 +1,11 @@
 .mainContainer {
   margin-top: -15px;
 }
+
+.userInfoContainer {
+  height: 50px;
+}
+
 .userInfo {
   background-color: #fc8a06;
   display: flex;

@@ -122,8 +122,8 @@ function UserProfile() {
 
   // Handle adding a new card
   const handleAddCard = () => {
-    setCurrentCard(null); // No card data for new card
-    setModalOpen(true);
+    setCurrentCard(null); // Ensure that currentCard is reset to null for adding a new card
+    setModalOpen(true); // Open the modal
   };
 
   // Handle closing the modal

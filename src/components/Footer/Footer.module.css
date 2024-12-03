@@ -92,6 +92,37 @@ ul > li {
   margin-top: 20px;
 }
 
+.footerDarkContainer {
+  background-color: #03081f;
+  width: 92%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 50px;
+  align-items: center;
+}
+.copyrightContainer {
+  width: 50%;
+}
+
+.copyrightContainer > h3 {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22.5px;
+  color: white;
+}
+
+.termsContainer {
+  display: flex;
+  color: white;
+  width: 50%;
+  justify-content: space-evenly;
+}
+.termsContainer p {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22.5px;
+}
+
 @media only screen and (max-width: 768px) {
   .subscriptionInputContainer > input {
     width: 100%;
@@ -143,5 +174,22 @@ ul > li {
     font-weight: 400;
     line-height: 43px;
     text-align: center;
+  }
+
+  .footerDarkContainer {
+    flex-wrap: wrap;
+    width: 70%;
+  }
+  .termsContainer {
+    flex-wrap: wrap;
+  }
+  .copyrightContainer {
+    width: 100%;
+  }
+  .copyrightContainer h3 {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22.5px;
   }
 }

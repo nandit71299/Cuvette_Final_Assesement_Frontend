@@ -16,7 +16,6 @@
 .modalContent {
   background-color: white;
   width: 400px;
-  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -25,8 +24,7 @@
 .title {
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 20px;
-  text-align: center;
+  padding: 10px 20px;
 }
 
 /* Form */
@@ -34,6 +32,14 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  padding: 10px 20px;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .inputGroup label {
@@ -43,7 +49,7 @@
 }
 
 .input {
-  width: 100%;
+  width: 60%;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -55,12 +61,14 @@
 /* Actions Section */
 .actions {
   display: flex;
+  background-color: #fc8a06;
+  padding: 10px;
   justify-content: space-between;
   margin-top: 20px;
 }
 
 .removeButton {
-  background-color: #4a2d2d;
+  background-color: #663700;
   color: white;
   padding: 10px 20px;
   border-radius: 8px;
@@ -75,16 +83,12 @@
 
 .cancelButton {
   background-color: transparent;
-  color: #555;
+  color: white;
   padding: 10px 20px;
   font-size: 14px;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: none;
   cursor: pointer;
-}
-
-.cancelButton:hover {
-  background-color: #f9f9f9;
 }
 
 .saveButton {
@@ -95,6 +99,7 @@
   border-radius: 8px;
   border: none;
   cursor: pointer;
+  border: 1px solid white;
 }
 
 .saveButton:hover {

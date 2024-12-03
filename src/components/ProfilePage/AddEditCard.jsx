@@ -16,7 +16,7 @@ const AddEditCardModal = ({ onClose, onSave, onRemove, cardDetails }) => {
         cardNumber: cardDetails.cardNumber || "",
         expiryDate: cardDetails.expiryDate || "",
         cvc: cardDetails.cvc || "",
-        name: cardDetails.nameOnCard || "",
+        nameOnCard: cardDetails.nameOnCard || "",
       });
     }
   }, [cardDetails]);
@@ -33,12 +33,16 @@ const AddEditCardModal = ({ onClose, onSave, onRemove, cardDetails }) => {
     onSave(cardData);
   };
 
+  // Determine title based on the presence of cardDetails (editing or adding)
+  const modalTitle =
+    cardDetails && cardDetails.cardNumber
+      ? "Edit Payment Method"
+      : "Add Payment Method";
+
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
-        <h2 className={styles.title}>
-          {cardDetails ? "Edit" : "Add"} Payment Method
-        </h2>
+        <h2 className={styles.title}>{modalTitle}</h2>
 
         <form className={styles.form}>
           <div className={styles.inputGroup}>
@@ -84,7 +88,7 @@ const AddEditCardModal = ({ onClose, onSave, onRemove, cardDetails }) => {
         </form>
 
         <div className={styles.actions}>
-          {cardDetails && (
+          {cardDetails && cardDetails.cardNumber && (
             <button
               className={styles.removeButton}
               onClick={() => onRemove(cardDetails._id)}

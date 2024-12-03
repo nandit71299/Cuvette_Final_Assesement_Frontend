@@ -5,8 +5,8 @@ import styles from "./ResMap.module.css";
 
 const ResMap = ({ lat, long, address, phone, website, resName }) => {
   // Convert lat/long from string to number
-  const latitude = parseFloat(lat);
-  const longitude = parseFloat(long);
+  const latitude = lat; // Trim whitespace
+  const longitude = long; // Trim whitespace
 
   // Check if the conversion was successful
   if (isNaN(latitude) || isNaN(longitude)) {
