@@ -43,7 +43,7 @@ const AddressBook = () => {
           (address) => address._id !== addressId
         );
         // Update the user state with the updated address list
-        dispatch(setUser({ ...user, addresses: updatedAddresses }));
+        dispatch(setUser(response));
       } else {
         alert(response.message || "Failed to delete address");
       }
@@ -74,7 +74,7 @@ const AddressBook = () => {
           : [...addresses, response.data];
 
         // Update the user state with the updated address list
-        dispatch(setUser({ ...user, addresses: updatedAddresses }));
+        dispatch(setUser(response));
         setModalOpen(false);
       } else {
         alert(response.message || "Failed to save address");
